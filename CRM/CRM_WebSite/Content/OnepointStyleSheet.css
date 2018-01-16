@@ -1,0 +1,108 @@
+﻿/*一點修改的CSS*/
+.set-font-family {
+    font-family: 微軟正黑體;
+}
+
+.deep-font-colour {
+    color: #1d1d1d;
+    font-weight: bold;
+}
+
+.form-control-label {
+    padding-top: 7px;
+    margin-bottom: 0;
+    text-align: right;
+}
+
+.nice-select {
+    font-family: 微軟正黑體;
+    font-weight: normal;
+    border-radius: 0;
+}
+
+section span {
+    font-size: 1.1em;
+    color: #000000;
+    font-weight: 400;
+    position: relative;
+    top: -5px;
+}
+
+li,
+button,
+input[type='submit'],
+span {
+    font-family: 微軟正黑體;
+}
+
+.login-page .form-holder .info {
+    background: #242424;
+    color: #fff;
+}
+
+.btn-dark {
+    color: #fff;
+    background-color: #242424;
+    border-color: #242424;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+input.input-material ~ label.active {
+    color: #2b0267;
+}
+
+.warning {
+    color: red;
+    font-weight: bold;
+}
+
+.hide {
+    display: none;
+}
+
+
+
+
+div.datedropper.vanilla:before,
+div.datedropper.vanilla .pick-submit,
+div.datedropper.vanilla .pick-lg-b .pick-sl:before,
+div.datedropper.vanilla .pick-m,
+div.datedropper.vanilla .pick-lg-h {
+    background-color: #a5d5d5;
+}
+
+div.datedropper.vanilla .pick-y.pick-jump,
+div.datedropper.vanilla .pick li span,
+div.datedropper.vanilla .pick-lg-b .pick-wke,
+div.datedropper.vanilla .pick-btn {
+    color: #a5d5d5;
+}
+div.datedropper.vanilla .picker,
+div.datedropper.vanilla .pick-l {
+    background-color: #ffffff;
+}
+
+div.datedropper.vanilla .picker,
+div.datedropper.vanilla .pick-arw,
+div.datedropper.vanilla .pick-l {
+    color: #435a5b;
+}
+
+div.datedropper.vanilla .pick-m,
+div.datedropper.vanilla .pick-m .pick-arw,
+div.datedropper.vanilla .pick-lg-h,
+div.datedropper.vanilla .pick-lg-b .pick-sl,
+div.datedropper.vanilla .pick-submit {
+    color: #faf7f4;
+}
+div.datedropper.vanilla.picker-tiny .pick-m,
+div.datedropper.vanilla.picker-tiny .pick-m .pick-arw {
+    color: #496668;
+}
+
+div.datedropper .picker .pick-btns .pick-btn {
+    border-radius: 0;
+}
