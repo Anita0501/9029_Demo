@@ -59,7 +59,7 @@ public partial class _02_AddCustomer : System.Web.UI.Page
 
     protected void UpdateBtn_Click(object sender, EventArgs e)
     {
-        CRM_Customer r = new CRM_Customer() { CompanyID = Convert.ToInt32(UCompanyIDTextBox.Text) };
+        CRM_Customer r = new CRM_Customer() { CompanyID = Convert.ToInt32(CompanyIDTextBox.Text) };
         r.CompanyName = CompanyNameTextBox.Text;
         r.CompanyAddress = CompanyAddressTextBox.Text;
         r.CompanyPhone = CompanyPhoneTextBox.Text;
