@@ -12,39 +12,41 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
     <br />
     <div class="container">
-        <div>
+        <div class="form-group">
             <asp:Label ID="CompanyID" runat="server" Text="統編" AssociatedControlID="CompanyIDTextBox" CssClass="col-2"></asp:Label>
-            <asp:TextBox ID="CompanyIDTextBox" runat="server"></asp:TextBox>
+            <asp:TextBox ID="CompanyIDTextBox" runat="server" CssClass="col-4"></asp:TextBox>
+            <asp:Button ID="SelectBtn" CssClass="btn btn-sm btn-info col-1" runat="server" Text="查詢" OnClick="SelectBtn_Click" />
+
         </div>
-        <div>
+        <div class="form-group">
             <asp:Label ID="CompanyName" runat="server" Text="公司名稱" AssociatedControlID="CompanyNameTextBox" CssClass="col-2"></asp:Label>
-            <asp:TextBox ID="CompanyNameTextBox" runat="server"></asp:TextBox>
+            <asp:TextBox ID="CompanyNameTextBox" runat="server" CssClass="col-4"></asp:TextBox>
         </div>
-        <div>
+        <div class="form-group">
             <asp:Label ID="CompanyAddress" runat="server" Text="公司地址" AssociatedControlID="CompanyAddressTextBox" CssClass="col-2"></asp:Label>
-            <asp:TextBox ID="CompanyAddressTextBox" runat="server"></asp:TextBox>
+            <asp:TextBox ID="CompanyAddressTextBox" runat="server" CssClass="col-4"></asp:TextBox>
         </div>
-        <div>
+        <div class="form-group">
             <asp:Label ID="CompanyPhone" runat="server" Text="公司電話" AssociatedControlID="CompanyPhoneTextBox" CssClass="col-2"></asp:Label>
-            <asp:TextBox ID="CompanyPhoneTextBox" runat="server"></asp:TextBox>
+            <asp:TextBox ID="CompanyPhoneTextBox" runat="server" CssClass="col-4"></asp:TextBox>
         </div>
-        <div>
+        <div class="form-group">
             <asp:Label ID="OfficialWebsite" runat="server" Text="公司官網" AssociatedControlID="OfficialWebsiteTextBox" CssClass="col-2"></asp:Label>
-            <asp:TextBox ID="OfficialWebsiteTextBox" runat="server"></asp:TextBox>
+            <asp:TextBox ID="OfficialWebsiteTextBox" runat="server" CssClass="col-4"></asp:TextBox>
         </div>
-        <div>
+        <div class="form-group">
             <asp:Label ID="ContactPerson" runat="server" Text="負責窗口" AssociatedControlID="ContactPersonTextBox" CssClass="col-2"></asp:Label>
-            <asp:TextBox ID="ContactPersonTextBox" runat="server"></asp:TextBox>
+            <asp:TextBox ID="ContactPersonTextBox" runat="server" CssClass="col-4"></asp:TextBox>
         </div>
-        <div>
+        <div class="form-group">
             <asp:Label ID="CP_Phone" runat="server" Text="負責窗口電話" AssociatedControlID="CP_PhoneTextBox" CssClass="col-2"></asp:Label>
-            <asp:TextBox ID="CP_PhoneTextBox" runat="server"></asp:TextBox>
+            <asp:TextBox ID="CP_PhoneTextBox" runat="server" CssClass="col-4"></asp:TextBox>
         </div>
-        <div>
+        <div class="form-group">
             <asp:Label ID="CP_Email" runat="server" Text="負責窗口E-mail" AssociatedControlID="CP_EmailTextBox" CssClass="col-2"></asp:Label>
-            <asp:TextBox ID="CP_EmailTextBox" runat="server"></asp:TextBox>
+            <asp:TextBox ID="CP_EmailTextBox" runat="server" CssClass="col-4"></asp:TextBox>
         </div>
-        <div>
+        <div class="form-group">
             <%--專題第三階段需要欄位--%>
             <asp:Label ID="CompanyScale" runat="server" Text="公司規模" CssClass="col-2"></asp:Label>
             <asp:DropDownList ID="CompanyScaleDropDownList" runat="server">
@@ -56,7 +58,7 @@
                 <asp:ListItem>3001萬-5000萬</asp:ListItem>
             </asp:DropDownList>
         </div>
-        <div>
+        <div class="form-group">
             <asp:Label ID="CompanyCategory" runat="server" Text="產業類別" CssClass="col-2"></asp:Label>
             <asp:DropDownList ID="CompanyCategoryDropDownList" runat="server">
                 <asp:ListItem>請選擇產業類別</asp:ListItem>
@@ -69,13 +71,18 @@
             </asp:DropDownList>
         </div>
         <br />
-        <asp:Button ID="InsertBtn" CssClass="btn btn-info" runat="server" Text="新增" OnClick="InsertBtn_Click" />
-        <asp:Button ID="CancelBtn" CssClass="btn btn-info" runat="server" Text="取消" OnClick="CancelBtn_Click" />
-        <asp:Button ID="UpdateBtn" CssClass="btn btn-info" runat="server" Text="修改" OnClick="UpdateBtn_Click" />
-        <asp:Button ID="Demobtn" CssClass="btn btn-info" runat="server" Text="DemoData" OnClick="Demobtn_Click" />
+        <div>
+            <asp:Button ID="InsertBtn" CssClass="btn btn-info offset-2 col-1" runat="server" Text="新增" OnClick="InsertBtn_Click" />
+            <asp:Button ID="CancelBtn" CssClass="btn btn-info col-1" runat="server" Text="取消" OnClick="CancelBtn_Click" />
+            <asp:Button ID="UpdateBtn" CssClass="btn btn-info col-1" runat="server" Text="修改" OnClick="UpdateBtn_Click" />
+            <asp:Button ID="Demobtn" CssClass="btn btn-info col-1" runat="server" Text="Demo" OnClick="Demobtn_Click" />
+        </div>
     </div>
 
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="JavaScriptContentPlaceHolder" runat="Server">
+    <script>
+
+</script>
 </asp:Content>
 

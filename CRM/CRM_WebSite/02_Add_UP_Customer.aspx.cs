@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -75,4 +76,19 @@ public partial class _02_AddCustomer : System.Web.UI.Page
     }
 
 
+
+    protected void SelectBtn_Click(object sender, EventArgs e)
+    {
+        int id = Convert.ToInt32(CompanyIDTextBox.Text);
+        CRM_CustomerUtility ru = new CRM_CustomerUtility();
+        List<CRM_Customer> rList = ru.GetCustomer(id);
+
+        CompanyNameTextBox.Text = rList[0].CompanyName;
+        CompanyAddressTextBox.Text = rList[0].CompanyAddress;
+        CompanyPhoneTextBox.Text = rList[0].CompanyPhone;
+        OfficialWebsiteTextBox.Text = rList[0].OfficialWebsite;
+        ContactPersonTextBox.Text = rList[0].ContactPerson;
+        CP_PhoneTextBox.Text = rList[0].CP_Phone;
+        CP_EmailTextBox.Text = rList[0].CP_Email;
+    }
 }

@@ -28,6 +28,33 @@ public class CRM_CustomerUtility
         }
         return rList;
     }
+    public List<CRM_Customer> GetCustomer(int id)
+    {
+        DataTable dt = DBHelper.GetDataTable("select * from CRM_Customer where CompanyID=@id", new Dictionary<string, object>() {
+                { "@id", id } });
+        List<CRM_Customer> rList = new List<CRM_Customer>();
+
+        foreach (DataRow row in dt.Rows)
+        {
+            CRM_Customer r = new CRM_Customer()
+            {
+                CompanyID = id,
+                CompanyName = row["CompanyName"].ToString(),
+                CompanyAddress = row["CompanyAddress"].ToString(),
+                CompanyPhone = row["CompanyPhone"].ToString(),
+                OfficialWebsite = row["OfficialWebsite"].ToString(),
+                ContactPerson = row["ContactPerson"].ToString(),
+                CP_Phone = row["CP_Phone"].ToString(),
+                CP_Email = row["CP_Email"].ToString(),
+                CompanyScale = row["CompanyScale"].ToString(),
+                CompanyCategory = row["CompanyCategory"].ToString()
+            };
+            rList.Add(r);
+        }
+        return rList;
+
+    }
+
 
     public void Insert(CRM_Customer r)
     {
