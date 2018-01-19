@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="02_Add_UP_Customer.aspx.cs" Inherits="_02_AddCustomer" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="CSSContentPlaceHolder" runat="Server">
+<%--    <link href="Scripts/sweetalert2.min.css" rel="stylesheet" />--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitleContentPlaceHolder" runat="Server">
     客戶關係管理
@@ -12,6 +13,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
     <br />
     <div class="container">
+        <asp:Label ID="ErrorLab" CssClass="offset-2" Style="color: red" runat="server" Text=""></asp:Label>
         <div class="form-group">
             <asp:Label ID="CompanyID" runat="server" Text="統編" AssociatedControlID="CompanyIDTextBox" CssClass="col-2"></asp:Label>
             <asp:TextBox ID="CompanyIDTextBox" runat="server" CssClass="col-4"></asp:TextBox>
@@ -73,16 +75,34 @@
         <br />
         <div>
             <asp:Button ID="InsertBtn" CssClass="btn btn-info offset-2 col-1" runat="server" Text="新增" OnClick="InsertBtn_Click" />
-            <asp:Button ID="CancelBtn" CssClass="btn btn-info col-1" runat="server" Text="取消" OnClick="CancelBtn_Click" />
             <asp:Button ID="UpdateBtn" CssClass="btn btn-info col-1" runat="server" Text="修改" OnClick="UpdateBtn_Click" />
-            <asp:Button ID="Demobtn" CssClass="btn btn-info col-1" runat="server" Text="Demo" OnClick="Demobtn_Click" />
+            <asp:Button ID="CancelBtn" CssClass="btn btn-info col-1" runat="server" Text="取消" OnClick="CancelBtn_Click" />
+            <asp:Button ID="Demobtn" CssClass="btn btn-default offset-2 col-1" runat="server" Text="Demo" OnClick="Demobtn_Click" />
         </div>
     </div>
 
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="JavaScriptContentPlaceHolder" runat="Server">
-    <script>
+<%--    <script src="Scripts/sweetalert2.min.js"></script>--%>
 
-</script>
+<%--    <script>
+        $(function () {
+
+            $("#InsertBtn").click(function () {
+
+                swal({
+                    title: '確認新增',
+                    text: "客戶資料新增成功!",
+                    type: 'warning',
+                    showCancelButton: true,
+                }).then(
+                    function () {
+                        $("#__EVENTTARGET").val("Button1");
+                        $("#form1").submit();
+                    });
+            });
+
+        });
+    </script>--%>
 </asp:Content>
 
