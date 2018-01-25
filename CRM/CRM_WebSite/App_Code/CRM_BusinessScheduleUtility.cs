@@ -61,9 +61,9 @@ public class CRM_BusinessScheduleUtility
     public void Insert(CRM_BusinessSchedule r)
     {
         DBHelper.RunTSQL(
-            "insert into CRM_BusinessSchedule values(@id,@cpid,@cpname,@empid,@empname,@trip,@target,@memo)",
+            "insert into CRM_BusinessSchedule values(@cpid,@cpname,@empid,@empname,@trip,@target,@memo)",
                 new Dictionary<string, object>() {
-                    { "@id", r.TripID },
+                    
                     { "@cpid", r.CompanyID },
                     { "@cpname", r.CompanyName },
                     { "@empid", r.EmployeeID },
@@ -78,7 +78,6 @@ public class CRM_BusinessScheduleUtility
         DBHelper.RunTSQL(
             "update CRM_BusinessSchedule  set CompanyID=@cpid,CompanyName=@cpname,EmployeeID=@empname,EmployeeName=@empname,TripTheme=@trip,TargetDate=@target,Memo=@memo  where TripID=@id",
             new Dictionary<string, object>() {
-                    { "@id", r.TripID },
                     { "@cpid", r.CompanyID },
                     { "@cpname", r.CompanyName },
                     { "@empid", r.EmployeeID },

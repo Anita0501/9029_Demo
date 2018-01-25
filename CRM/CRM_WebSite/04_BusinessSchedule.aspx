@@ -47,8 +47,6 @@
             <asp:Label ID="Memo" runat="server" Text="備註欄" AssociatedControlID="MemoTextBox" CssClass="col-2"></asp:Label>
             <asp:TextBox ID="MemoTextBox" runat="server" CssClass="col-4"></asp:TextBox>
         </div>
-
-
         <br />
         <div>
             <asp:Button ID="InsertBtn" CssClass="btn btn-info offset-2 col-1" runat="server" Text="新增" OnClick="InsertBtn_Click" />
