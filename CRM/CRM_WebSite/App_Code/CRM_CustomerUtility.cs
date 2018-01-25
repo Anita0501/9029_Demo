@@ -52,7 +52,6 @@ public class CRM_CustomerUtility
             rList.Add(r);
         }
         return rList;
-
     }
 
 

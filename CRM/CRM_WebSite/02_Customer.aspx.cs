@@ -23,6 +23,17 @@ public partial class _02_AddCustomer : System.Web.UI.Page
         CP_PhoneTextBox.Text = "0912-345-678";
         CP_EmailTextBox.Text = "BigLight@yahoo.com.tw";
     }
+    protected void CancelBtn_Click(object sender, EventArgs e)
+    {
+        CompanyIDTextBox.Text = "";
+        CompanyNameTextBox.Text = "";
+        CompanyAddressTextBox.Text = "";
+        CompanyPhoneTextBox.Text = "";
+        OfficialWebsiteTextBox.Text = "";
+        ContactPersonTextBox.Text = "";
+        CP_PhoneTextBox.Text = "";
+        CP_EmailTextBox.Text = "";
+    }
 
     protected void InsertBtn_Click(object sender, EventArgs e)
     {
@@ -50,22 +61,7 @@ public partial class _02_AddCustomer : System.Web.UI.Page
         {
             ErrorLab.Text = "此客戶資料已存在";
         }
-
     }
-
-    protected void CancelBtn_Click(object sender, EventArgs e)
-    {
-        CompanyIDTextBox.Text = "";
-        CompanyNameTextBox.Text = "";
-        CompanyAddressTextBox.Text = "";
-        CompanyPhoneTextBox.Text = "";
-        OfficialWebsiteTextBox.Text = "";
-        ContactPersonTextBox.Text = "";
-        CP_PhoneTextBox.Text = "";
-        CP_EmailTextBox.Text = "";
-
-    }
-
 
     protected void UpdateBtn_Click(object sender, EventArgs e)
     {
@@ -84,8 +80,6 @@ public partial class _02_AddCustomer : System.Web.UI.Page
         ru.Update(r);
         ErrorLab.Text = "修改客戶資料成功";
     }
-
-
 
     protected void SelectBtn_Click(object sender, EventArgs e)
     {
@@ -115,6 +109,5 @@ public partial class _02_AddCustomer : System.Web.UI.Page
             CP_PhoneTextBox.Text = "";
             CP_EmailTextBox.Text = "";
         }
-        
     }
 }
