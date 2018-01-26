@@ -14,10 +14,10 @@ public partial class BusinessSchedule : System.Web.UI.Page
 
     protected void Demobtn_Click(object sender, EventArgs e)
     {
-        TripIDTextBox.Text = "";
+        //TripIDTextBox.Text = "";
         CompanyIDTextBox.Text = "53212539";
-        CompanyNameTextBox.Text = "高思數位網路有限公司";
-        EmployeeIDTextBox.Text = "888";
+        CompanyNameTextBox.Text = "";
+        EmployeeIDTextBox.Text = "A1088";
         EmployeeNameTextBox.Text = "林小牙";
         TripThemeTextBox.Text = "新產品Demo";
         TargetDateTextBox.Text = "";
@@ -25,7 +25,7 @@ public partial class BusinessSchedule : System.Web.UI.Page
     }
     protected void CancelBtn_Click(object sender, EventArgs e)
     {
-        TripIDTextBox.Text = "";
+        //TripIDTextBox.Text = "";
         CompanyIDTextBox.Text = "";
         CompanyNameTextBox.Text = "";
         EmployeeIDTextBox.Text = "";
@@ -42,7 +42,7 @@ public partial class BusinessSchedule : System.Web.UI.Page
             ErrorLab.Text = "";
             CRM_BusinessSchedule r = new CRM_BusinessSchedule()
             {
-                TripID = Convert.ToInt32(TripIDTextBox.Text),
+                //TripID = Convert.ToInt32(TripIDTextBox.Text),
                 CompanyID = Convert.ToInt32(CompanyIDTextBox.Text),
                 CompanyName = CompanyNameTextBox.Text,
                 EmployeeID = Convert.ToInt32(EmployeeIDTextBox.Text),
@@ -57,17 +57,26 @@ public partial class BusinessSchedule : System.Web.UI.Page
         }
         catch (Exception)
         {
-            ErrorLab.Text = "此行程單號已存在";
+            ErrorLab.Text = "查無此客戶，請先建立客戶資料";
         }
-    }
-
-    protected void UpdateBtn_Click(object sender, EventArgs e)
-    {
-
     }
 
     protected void SelectBtn_Click(object sender, EventArgs e)
     {
+        try
+        {
+            ErrorLab.Text = "";
+            int id = Convert.ToInt32(CompanyIDTextBox.Text);
+            CRM_CustomerUtility ru = new CRM_CustomerUtility();
+            List<CRM_Customer> rList = ru.GetCustomer(id);
 
+            CompanyNameTextBox.Text = rList[0].CompanyName;
+            
+        }
+        catch (Exception)
+        {
+            ErrorLab.Text = "查無此客戶資料";
+            CompanyNameTextBox.Text = "";
+        }
     }
 }
