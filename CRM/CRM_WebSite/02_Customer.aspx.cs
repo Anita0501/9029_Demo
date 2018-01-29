@@ -39,7 +39,7 @@ public partial class _02_AddCustomer : System.Web.UI.Page
     {
         try
         {
-            ErrorLab.Text = "";
+            ErrorLab.Text = "客戶資料新增成功";
             CRM_Customer r = new CRM_Customer()
             {
                 CompanyID = Convert.ToInt32(CompanyIDTextBox.Text),

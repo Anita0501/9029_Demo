@@ -50,7 +50,7 @@
         <div class="form-group">
             <%--專題第三階段需要欄位--%>
             <asp:Label ID="CompanyScale" runat="server" Text="公司規模" CssClass="col-2"></asp:Label>
-            <asp:DropDownList ID="CompanyScaleDropDownList" runat="server">
+            <asp:DropDownList ID="CompanyScaleDropDownList" runat="server" CssClass="col-4">
                 <asp:ListItem>請選擇公司規模</asp:ListItem>
                 <asp:ListItem>100萬以下</asp:ListItem>
                 <asp:ListItem>101萬-500萬</asp:ListItem>
@@ -61,7 +61,7 @@
         </div>
         <div class="form-group">
             <asp:Label ID="CompanyCategory" runat="server" Text="產業類別" CssClass="col-2"></asp:Label>
-            <asp:DropDownList ID="CompanyCategoryDropDownList" runat="server">
+            <asp:DropDownList ID="CompanyCategoryDropDownList" runat="server" CssClass="col-4">
                 <asp:ListItem>請選擇產業類別</asp:ListItem>
                 <asp:ListItem>軟體及網路相關業</asp:ListItem>
                 <asp:ListItem>電信及通訊相關業</asp:ListItem>

@@ -30,4 +30,29 @@ public class CRM_WebService : System.Web.Services.WebService
         return rList;
     }
 
+    [WebMethod]
+    public void Delete (int id)
+    {
+        CRM_CustomerUtility ru = new CRM_CustomerUtility();
+        //int id = Convert.ToInt32(DeleteTextBox.Text);
+        ru.Delete(id);
+    }
+
+    [WebMethod]
+    public void Update(int id)
+    {
+        //CRM_Customer r = new CRM_Customer() { CompanyID = Convert.ToInt32() };
+        //r.CompanyName = ;
+        //r.CompanyAddress = ;
+        //r.CompanyPhone = ;
+        //r.OfficialWebsite = ;
+        //r.ContactPerson = ;
+        //r.CP_Phone = ;
+        //r.CP_Email = ;
+        //r.CompanyScale = ;
+        //r.CompanyCategory = ;
+
+        //CRM_CustomerUtility ru = new CRM_CustomerUtility();
+        //ru.Update(r);
+    }
 }
