@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="02_Customer.aspx.cs" Inherits="_02_AddCustomer" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CRM_02_Customer.aspx.cs" Inherits="_02_AddCustomer" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="CSSContentPlaceHolder" runat="Server">
 <%--    <link href="Scripts/sweetalert2.min.css" rel="stylesheet" />--%>
@@ -48,28 +48,18 @@
             <asp:TextBox ID="CP_EmailTextBox" runat="server" CssClass="col-4"></asp:TextBox>
         </div>
         <div class="form-group">
-            <%--專題第三階段需要欄位--%>
             <asp:Label ID="CompanyScale" runat="server" Text="公司規模" CssClass="col-2"></asp:Label>
-            <asp:DropDownList ID="CompanyScaleDropDownList" runat="server" CssClass="col-4">
-                <asp:ListItem>請選擇公司規模</asp:ListItem>
-                <asp:ListItem>100萬以下</asp:ListItem>
-                <asp:ListItem>101萬-500萬</asp:ListItem>
-                <asp:ListItem>501萬-1000萬</asp:ListItem>
-                <asp:ListItem>1001萬-3000萬</asp:ListItem>
-                <asp:ListItem>3001萬-5000萬</asp:ListItem>
+            <asp:DropDownList ID="CompanyScaleDropDownList" runat="server" CssClass="col-4" DataSourceID="CompanyScales" DataTextField="CompanyScale" DataValueField="CompanyScale" AppendDataBoundItems="True">
+                <asp:ListItem>未選擇</asp:ListItem>
             </asp:DropDownList>
+            <asp:SqlDataSource runat="server" ID="CompanyScales" ConnectionString='<%$ ConnectionStrings:CRMConnectionString1 %>' SelectCommand="SELECT [CompanyScale] FROM [CRM_CompanyScales]"></asp:SqlDataSource>
         </div>
         <div class="form-group">
             <asp:Label ID="CompanyCategory" runat="server" Text="產業類別" CssClass="col-2"></asp:Label>
-            <asp:DropDownList ID="CompanyCategoryDropDownList" runat="server" CssClass="col-4">
-                <asp:ListItem>請選擇產業類別</asp:ListItem>
-                <asp:ListItem>軟體及網路相關業</asp:ListItem>
-                <asp:ListItem>電信及通訊相關業</asp:ListItem>
-                <asp:ListItem>電腦及消費性電子製造業</asp:ListItem>
-                <asp:ListItem>光電及光學相關業</asp:ListItem>
-                <asp:ListItem>電子零組件相關業</asp:ListItem>
-                <asp:ListItem>半導體業</asp:ListItem>
+            <asp:DropDownList ID="CompanyCategoryDropDownList" runat="server" CssClass="col-4" DataSourceID="CompanyCategorys" DataTextField="CompanyCategory" DataValueField="CompanyCategory" AppendDataBoundItems="True">
+                <asp:ListItem>未選擇</asp:ListItem>
             </asp:DropDownList>
+            <asp:SqlDataSource runat="server" ID="CompanyCategorys" ConnectionString='<%$ ConnectionStrings:CRMConnectionString1 %>' SelectCommand="SELECT [CompanyCategory] FROM [CRM_CompanyCategorys]"></asp:SqlDataSource>
         </div>
         <br />
         <div>

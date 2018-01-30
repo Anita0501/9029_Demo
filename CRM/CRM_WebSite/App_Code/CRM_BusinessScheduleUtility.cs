@@ -19,13 +19,13 @@ public class CRM_BusinessScheduleUtility
         {
             CRM_BusinessSchedule r = new CRM_BusinessSchedule()
             {
-                TripID = Convert.ToInt32(row["TripID"]),
+                //TripID = Convert.ToInt32(row["TripID"]),
                 CompanyID = Convert.ToInt32(row["CompanyID"]),
                 CompanyName = row["CompanyName"].ToString(),
-                EmployeeID = Convert.ToInt32(row["EmployeeID"]),
+                EmployeeID = row["EmployeeID"].ToString(),
                 EmployeeName = row["EmployeeName"].ToString(),
                 TripTheme = row["TripTheme"].ToString(),
-                TargetDate = Convert.ToDateTime(row["TargetDate"]),
+                TargetDate = row["TargetDate"].ToString(),
                 Memo = row["Memo"].ToString(),
             };
             rList.Add(r);
@@ -43,13 +43,13 @@ public class CRM_BusinessScheduleUtility
         {
             CRM_BusinessSchedule r = new CRM_BusinessSchedule()
             {
-                TripID = id,
+                //TripID = id,
                 CompanyID = Convert.ToInt32(row["CompanyID"]),
                 CompanyName = row["CompanyName"].ToString(),
-                EmployeeID = Convert.ToInt32(row["EmployeeID"]),
+                EmployeeID = row["EmployeeID"].ToString(),
                 EmployeeName = row["EmployeeName"].ToString(),
                 TripTheme = row["TripTheme"].ToString(),
-                TargetDate = Convert.ToDateTime(row["TargetDate"]),
+                TargetDate = row["TargetDate"].ToString(),
                 Memo = row["Memo"].ToString(),
             };
             rList.Add(r);

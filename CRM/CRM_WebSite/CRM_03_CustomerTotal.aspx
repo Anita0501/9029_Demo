@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="03_CustomerTotal.aspx.cs" Inherits="_03_Sel_Del_Customer" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CRM_03_CustomerTotal.aspx.cs" Inherits="_03_Sel_Del_Customer" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="CSSContentPlaceHolder" runat="Server">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -18,56 +18,6 @@
             border-style: none;
             border-radius: 5px;
         }
-        /*#dialog-form {
-            font-size: 90%;
-        }
-
-        #dialog-form label, input {
-            display: block;
-        }
-
-        #dialog-form input.text {
-                margin-bottom: 12px;
-                width: 95%;
-                padding: .4em;
-            }
-
-       #dialog-form fieldset {
-            padding: 0;
-            border: 0;
-            margin-top: 25px;
-        }
-
-        h1 {
-            font-size: 1.2em;
-            margin: .6em 0;
-        }
-
-        div#users-contain {
-            width: 350px;
-            margin: 20px 0;
-        }
-
-            div#users-contain table {
-                margin: 1em 0;
-                border-collapse: collapse;
-                width: 100%;
-            }
-
-                div#users-contain table td, div#users-contain table th {
-                    border: 1px solid #eee;
-                    padding: .6em 10px;
-                    text-align: left;
-                }
-
-        .ui-dialog .ui-state-error {
-            padding: .3em;
-        }
-
-        .validateTips {
-            border: 1px solid transparent;
-            padding: 0.3em;
-        }*/
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitleContentPlaceHolder" runat="Server">
@@ -97,43 +47,34 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="CompanyID" class="col-4">公司統編</label>
-                        <input type="text" name="CompanyID" id="CompanyID" class="text ui-widget-content ui-corner-all col-6">
+                        <asp:TextBox ID="CompanyID" runat="server" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="CompanyName" class="col-4">公司名稱</label>
-                        <input type="text" name="CompanyName" id="CompanyName" value="" class="text ui-widget-content ui-corner-all col-6">
+                        <asp:TextBox ID="CompanyName" runat="server"  class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="CompanyAddress" class="col-4">公司地址</label>
-                        <input type="text" name="CompanyAddress" id="CompanyAddress" value="" class="text ui-widget-content ui-corner-all col-6">
+                        <asp:TextBox ID="CompanyAddress" runat="server"  value="" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="CompanyPhone" class="col-4">公司電話</label>
-                        <input type="text" name="CompanyPhone" id="CompanyPhone" value="" class="text ui-widget-content ui-corner-all col-6">
+                        <asp:TextBox ID="CompanyPhone" runat="server" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="OfficialWebsite" class="col-4">公司官網</label>
-                        <input type="text" name="OfficialWebsite" id="OfficialWebsite" value="" class="text ui-widget-content ui-corner-all col-6">
+                        <asp:TextBox ID="OfficialWebsite" runat="server" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="ContactPerson" class="col-4">負責窗口</label>
-                        <input type="text" name="ContactPerson" id="ContactPerson" value="" class="text ui-widget-content ui-corner-all col-6">
+                        <asp:TextBox ID="ContactPerson" runat="server" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="CP_Phone" class="col-4">負責窗口電話</label>
-                        <input type="text" name="CP_Phone" id="CP_Phone" value="" class="text ui-widget-content ui-corner-all col-6">
+                        <asp:TextBox ID="CP_Phone" runat="server" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="CP_Email" class="col-4">負責窗口E-mail</label>
-                        <input type="text" name="CP_Email" id="CP_Email" value="" class="text ui-widget-content ui-corner-all col-6">
+                        <asp:TextBox ID="CP_Email" runat="server" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="CompanyScale" class="col-4">公司規模</label>
-                        <asp:DropDownList ID="CompanyScale" runat="server" class="text ui-widget-content ui-corner-all col-6">
-                            <asp:ListItem>請選擇公司規模</asp:ListItem>
-                            <asp:ListItem>100萬以下</asp:ListItem>
-                            <asp:ListItem>101萬-500萬</asp:ListItem>
-                            <asp:ListItem>501萬-1000萬</asp:ListItem>
-                            <asp:ListItem>1001萬-3000萬</asp:ListItem>
-                            <asp:ListItem>3001萬-5000萬</asp:ListItem>
+                        <asp:DropDownList ID="CompanyScale" runat="server" class="text ui-widget-content ui-corner-all col-6" DataSourceID="CompanyScales" DataTextField="CompanyScale" DataValueField="CompanyScale" AppendDataBoundItems="True">
+                            <asp:ListItem>未選擇</asp:ListItem>
                         </asp:DropDownList>
+                        <asp:SqlDataSource runat="server" ID="CompanyScales" ConnectionString='<%$ ConnectionStrings:CRMConnectionString1 %>' SelectCommand="SELECT [CompanyScale] FROM [CRM_CompanyScales]"></asp:SqlDataSource>
                         <label for="CompanyCategory" class="col-4">產業類別</label>
-                        <asp:DropDownList ID="CompanyCategory" runat="server" class="text ui-widget-content ui-corner-all col-6">
-                            <asp:ListItem>請選擇產業類別</asp:ListItem>
-                            <asp:ListItem>軟體及網路相關業</asp:ListItem>
-                            <asp:ListItem>電信及通訊相關業</asp:ListItem>
-                            <asp:ListItem>電腦及消費性電子製造業</asp:ListItem>
-                            <asp:ListItem>光電及光學相關業</asp:ListItem>
-                            <asp:ListItem>電子零組件相關業</asp:ListItem>
-                            <asp:ListItem>半導體業</asp:ListItem>
+                        <asp:DropDownList ID="CompanyCategory" runat="server" class="text ui-widget-content ui-corner-all col-6" AppendDataBoundItems="True" DataSourceID="CompanyCategorys" DataTextField="CompanyCategory" DataValueField="CompanyCategory">
+                            <asp:ListItem>未選擇</asp:ListItem>
                         </asp:DropDownList>
+                        <asp:SqlDataSource runat="server" ID="CompanyCategorys" ConnectionString='<%$ ConnectionStrings:CRMConnectionString1 %>' SelectCommand="SELECT [CompanyCategory] FROM [CRM_CompanyCategorys]"></asp:SqlDataSource>
                     </div>
                     <div class="modal-footer">
-                        <asp:Button ID="Button1" runat="server" Text="修改" CssClass="btn btn-info" />
+                        <asp:Button ID="UpdateBtn" runat="server" Text="修改" CssClass="btn btn-info" OnClick="UpdateBtn_Click" />
                         <asp:Button ID="Button2" runat="server" Text="取消" CssClass="btn btn-info" />
                     </div>
                 </div>
@@ -215,16 +156,16 @@
                     $("#CustomerTable tbody").on('click', '#update', function () {
                         var data = datatableVariable.row($(this).parents('tr')).data();
                         var data2 = datatableVariable.row($(this).parents('tr'));
-                        $("#CompanyID").val(data.CompanyID);
-                        $("#CompanyName").val(data.CompanyName);
-                        $("#CompanyAddress").val(data.CompanyAddress);
-                        $("#CompanyPhone").val(data.CompanyPhone);
-                        $("#OfficialWebsite").val(data.OfficialWebsite);
-                        $("#ContactPerson").val(data.ContactPerson);
-                        $("#CP_Phone").val(data.CP_Phone);
-                        $("#CP_Email").val(data.CP_Email);
-                        $("#CompanyScale").val(data.CompanyScale);
-                        $("#CompanyCategory").val(data.CompanyCategory);
+                        $("#MainContentPlaceHolder_CompanyID").val(data.CompanyID);
+                        $("#MainContentPlaceHolder_CompanyName").val(data.CompanyName);
+                        $("#MainContentPlaceHolder_CompanyAddress").val(data.CompanyAddress);
+                        $("#MainContentPlaceHolder_CompanyPhone").val(data.CompanyPhone);
+                        $("#MainContentPlaceHolder_OfficialWebsite").val(data.OfficialWebsite);
+                        $("#MainContentPlaceHolder_ContactPerson").val(data.ContactPerson);
+                        $("#MainContentPlaceHolder_CP_Phone").val(data.CP_Phone);
+                        $("#MainContentPlaceHolder_CP_Email").val(data.CP_Email);
+                        $("#MainContentPlaceHolder_CompanyScale").val(data.CompanyScale);
+                        $("#MainContentPlaceHolder_CompanyCategory").val(data.CompanyCategory);
                     });
 
                     $("#CustomerTable tbody").on('click', '#delete', function () {
@@ -255,63 +196,6 @@
                 }
 
             });
-
-            //$("#myModal").dialog({
-            //    autoOpen: false,
-            //    height: 600,
-            //    width: 400,
-            //    modal: true
-            //    //buttons: {
-            //    //    "修改": function () {
-
-
-            //    //        $(this).dialog("close");
-
-            //    //    },
-            //    //    Cancel: function () {
-            //    //        $(this).dialog("close");
-            //    //    }
-            //    //},
-            //    //close: function () {
-            //    //    //allFields.val("").removeClass("ui-state-error");
-            //    //    $(this).dialog("close");
-            //    //}
-            //});
-
-            //$("#Update").click(function () {
-            //    $("#dialog-form").dialog("open");
-            //    alert("成功");
-            //});
-            //$("#CustomerTable tbody").on('click', '#Update', function () {
-            //    //var data = datatableVariable.row($(this).parents('tr')).data();
-            //    //var data2 = datatableVariable.row($(this).parents('tr'));
-            //    //if (confirm("確定刪除")) {
-            //    //    $.ajax({
-            //    //        type: "POST",
-            //    //        url: "CRM_WebService.asmx/Update",
-            //    //        data: JSON.stringify({ id: data.CompanyID }),
-            //    //        contentType: "application/json; charset=utf-8",
-            //    //        dataType: "json",
-            //    //        success: function (response) {
-            //    //            alert('測試');
-            //    //            //data2.remove().draw(false);
-            //    //        }
-            //    //    });
-
-            //    //}
-            //    //else {
-            //    //    alert("刪除取消");
-            //    //}
-            //    //$('#myModal').on('show.bs.modal', function (event) {
-            //    //    var button = $(event.relatedTarget) // Button that triggered the modal
-            //    //    var recipient = button.data('whatever') // Extract info from data-* attributes
-            //    //    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-            //    //    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-            //    //    var modal = $(this)
-            //    //    modal.find('.modal-title').text('New message to ' + recipient)
-            //    //    modal.find('.modal-body input').val(recipient)
-            //    //})
-            //});
         });
     </script>
 </asp:Content>

@@ -45,19 +45,20 @@ public partial class BusinessSchedule : System.Web.UI.Page
                 //TripID = Convert.ToInt32(TripIDTextBox.Text),
                 CompanyID = Convert.ToInt32(CompanyIDTextBox.Text),
                 CompanyName = CompanyNameTextBox.Text,
-                EmployeeID = Convert.ToInt32(EmployeeIDTextBox.Text),
+                EmployeeID = EmployeeIDTextBox.Text,
                 EmployeeName = EmployeeNameTextBox.Text,
                 TripTheme = TripThemeTextBox.Text,
-                TargetDate = Convert.ToDateTime(TargetDateTextBox.Text),
+                TargetDate = TargetDateTextBox.Text,
                 Memo = MemoTextBox.Text
             };
 
             CRM_BusinessScheduleUtility ru = new CRM_BusinessScheduleUtility();
             ru.Insert(r);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            ErrorLab.Text = "查無此客戶，請先建立客戶資料";
+            //ErrorLab.Text = "查無此客戶，請先建立客戶資料";
+            ErrorLab.Text = ex.Message;
         }
     }
 

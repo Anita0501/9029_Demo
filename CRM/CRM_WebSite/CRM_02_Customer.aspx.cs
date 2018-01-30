@@ -10,7 +10,10 @@ public partial class _02_AddCustomer : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
 
+        }
     }
     protected void Demobtn_Click(object sender, EventArgs e)
     {
@@ -33,6 +36,8 @@ public partial class _02_AddCustomer : System.Web.UI.Page
         ContactPersonTextBox.Text = "";
         CP_PhoneTextBox.Text = "";
         CP_EmailTextBox.Text = "";
+        CompanyScaleDropDownList.SelectedValue = "未選擇";
+        CompanyCategoryDropDownList.SelectedValue = "未選擇";
     }
 
     protected void InsertBtn_Click(object sender, EventArgs e)
@@ -97,6 +102,8 @@ public partial class _02_AddCustomer : System.Web.UI.Page
             ContactPersonTextBox.Text = rList[0].ContactPerson;
             CP_PhoneTextBox.Text = rList[0].CP_Phone;
             CP_EmailTextBox.Text = rList[0].CP_Email;
+            CompanyScaleDropDownList.SelectedValue = rList[0].CompanyScale;
+            CompanyCategoryDropDownList.SelectedValue = rList[0].CompanyCategory;
         }
         catch (Exception)
         {
@@ -108,6 +115,9 @@ public partial class _02_AddCustomer : System.Web.UI.Page
             ContactPersonTextBox.Text = "";
             CP_PhoneTextBox.Text = "";
             CP_EmailTextBox.Text = "";
+            CompanyScaleDropDownList.SelectedValue = "未選擇";
+            CompanyCategoryDropDownList.SelectedValue = "未選擇";
         }
     }
+
 }

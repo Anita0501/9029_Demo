@@ -39,20 +39,11 @@ public class CRM_WebService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public void Update(int id)
+    public List<CRM_BusinessSchedule> BusinessSchedules()
     {
-        //CRM_Customer r = new CRM_Customer() { CompanyID = Convert.ToInt32() };
-        //r.CompanyName = ;
-        //r.CompanyAddress = ;
-        //r.CompanyPhone = ;
-        //r.OfficialWebsite = ;
-        //r.ContactPerson = ;
-        //r.CP_Phone = ;
-        //r.CP_Email = ;
-        //r.CompanyScale = ;
-        //r.CompanyCategory = ;
+        CRM_BusinessScheduleUtility ru = new CRM_BusinessScheduleUtility();
+        List<CRM_BusinessSchedule> rList = ru.GetSchedules();
 
-        //CRM_CustomerUtility ru = new CRM_CustomerUtility();
-        //ru.Update(r);
+        return rList;
     }
 }
