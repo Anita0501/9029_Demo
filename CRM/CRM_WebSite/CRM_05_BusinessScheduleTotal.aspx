@@ -124,8 +124,8 @@
                             {
                                 'data': null,
                                 render: function (data, type, row, meta) {
-                                    $("#TripIDHiddenField").val(data.TripID)
-                                    return "<a id='update' href='#' class='fa fa-pencil' data-toggle='modal' data-target='#myModal' style='color:cornflowerblue;text-decoration:none' ></a>&nbsp;<a id='DeleteSchedule' href='#' class='fa fa-trash-o' style='color:cornflowerblue;text-decoration:none' ></a>"
+                                    $("#TripIDHiddenField").val(data.TripID)      
+                                    return "<a id='update' href='#' class='fa fa-pencil' data-toggle='modal' data-toggle='tooltip'   data- placement='bottom' title='編輯' data-target='#myModal' style='color:cornflowerblue;text-decoration:none' ></a>&nbsp;<a id='DeleteSchedule' href='#' class='fa fa-trash-o' style='color:cornflowerblue;text-decoration:none' data-toggle='tooltip'  data- placement='bottom' title='刪除'></a>"
                                 }
                             }
                         ],
