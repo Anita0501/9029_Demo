@@ -20,18 +20,16 @@ public partial class _03_Sel_Del_Customer : System.Web.UI.Page
 
     protected void UpdateBtn_Click(object sender, EventArgs e)
     {
-        CRM_Customer r = new CRM_Customer() { CompanyID = Convert.ToInt32(CompanyID.Text) };
-        //r.CompanyName = CompanyName.Text;
-        //r.CompanyAddress = CompanyAddress.Text;
-        //r.CompanyPhone = CompanyPhone.Text;
-        //r.OfficialWebsite = OfficialWebsite.Text;
-        //r.ContactPerson = ContactPerson.Text;
-        //r.CP_Phone = CP_Phone.Text;
-        //r.CP_Email = CP_Email.Text;
-        //r.CompanyScale = CompanyScale.Text;
-        //r.CompanyCategory = CompanyCategory.Text;
+        CRM_BusinessSchedule r = new CRM_BusinessSchedule() { TripID = Convert.ToInt32(HiddenField1.Value) };
+        r.CompanyID = Convert.ToInt32(CompanyID.Text);
+        r.CompanyName = CompanyName.Text;
+        r.EmployeeID = EmployeeID.Text;
+        r.EmployeeName = EmployeeName.Text;
+        r.TripTheme = TripTheme.Text;
+        r.TargetDate = TargetDate.Text;
+        r.Memo = Memo.Text;
 
-        CRM_CustomerUtility ru = new CRM_CustomerUtility();
+        CRM_BusinessScheduleUtility ru = new CRM_BusinessScheduleUtility();
         ru.Update(r);
     }
 }

@@ -46,4 +46,12 @@ public class CRM_WebService : System.Web.Services.WebService
 
         return rList;
     }
+
+    [WebMethod]
+    public void DeleteSchedule(int id)
+    {
+        CRM_BusinessScheduleUtility ru = new CRM_BusinessScheduleUtility();
+        //int id = Convert.ToInt32(DeleteTextBox.Text);
+        ru.Delete(id);
+    }
 }

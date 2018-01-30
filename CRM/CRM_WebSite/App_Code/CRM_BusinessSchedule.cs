@@ -8,7 +8,7 @@ using System.Web;
 /// </summary>
 public class CRM_BusinessSchedule
 {
-    //public int TripID { get; set; }
+    public int TripID { get; set; }
     public int CompanyID { get; set; }
     public string CompanyName { get; set; }
     public string EmployeeID { get; set; }

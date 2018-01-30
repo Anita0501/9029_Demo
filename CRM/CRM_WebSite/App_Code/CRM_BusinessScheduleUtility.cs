@@ -19,14 +19,14 @@ public class CRM_BusinessScheduleUtility
         {
             CRM_BusinessSchedule r = new CRM_BusinessSchedule()
             {
-                //TripID = Convert.ToInt32(row["TripID"]),
+                TripID = Convert.ToInt32(row["TripID"]),
                 CompanyID = Convert.ToInt32(row["CompanyID"]),
                 CompanyName = row["CompanyName"].ToString(),
                 EmployeeID = row["EmployeeID"].ToString(),
                 EmployeeName = row["EmployeeName"].ToString(),
                 TripTheme = row["TripTheme"].ToString(),
                 TargetDate = row["TargetDate"].ToString(),
-                Memo = row["Memo"].ToString(),
+                Memo = row["Memo"].ToString()
             };
             rList.Add(r);
         }
@@ -50,7 +50,7 @@ public class CRM_BusinessScheduleUtility
                 EmployeeName = row["EmployeeName"].ToString(),
                 TripTheme = row["TripTheme"].ToString(),
                 TargetDate = row["TargetDate"].ToString(),
-                Memo = row["Memo"].ToString(),
+                Memo = row["Memo"].ToString()
             };
             rList.Add(r);
         }
@@ -63,7 +63,7 @@ public class CRM_BusinessScheduleUtility
         DBHelper.RunTSQL(
             "insert into CRM_BusinessSchedule values(@cpid,@cpname,@empid,@empname,@trip,@target,@memo)",
                 new Dictionary<string, object>() {
-                    
+
                     { "@cpid", r.CompanyID },
                     { "@cpname", r.CompanyName },
                     { "@empid", r.EmployeeID },
@@ -78,6 +78,7 @@ public class CRM_BusinessScheduleUtility
         DBHelper.RunTSQL(
             "update CRM_BusinessSchedule  set CompanyID=@cpid,CompanyName=@cpname,EmployeeID=@empname,EmployeeName=@empname,TripTheme=@trip,TargetDate=@target,Memo=@memo  where TripID=@id",
             new Dictionary<string, object>() {
+                    { "@id", r.TripID },
                     { "@cpid", r.CompanyID },
                     { "@cpname", r.CompanyName },
                     { "@empid", r.EmployeeID },

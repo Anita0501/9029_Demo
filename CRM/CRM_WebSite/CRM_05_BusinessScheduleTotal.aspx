@@ -47,7 +47,10 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="TripID" class="col-4">行程單號</label>
-                        <asp:TextBox ID="TripID" runat="server" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
+<%--                        <label ID="TripID" class="text ui-widget-content ui-corner-all col-6"></label>
+                        <asp:Label ID="TripID" runat="server" Text="" class="text ui-widget-content ui-corner-all col-6"></asp:Label>--%>
+                        <asp:TextBox ID="TripID" runat="server" class="text ui-widget-content ui-corner-all col-6" disabled="disabled"></asp:TextBox>
+                        <asp:HiddenField ID="HiddenField1" runat="server" />
                         <label for="CompanyID" class="col-4">統編</label>
                         <asp:TextBox ID="CompanyID" runat="server"  class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="CompanyName" class="col-4">公司名稱</label>
@@ -74,6 +77,7 @@
 
     <div class="container">
         <input id="CloseBtn" type="button" value="收折列表" class="btn btn-info btn-group-lg" />
+        <input id="TripIDHiddenField" type="hidden" />
         <br />
         <br />
         <table id="BusinessScheduleTable" class="table table-info table-bordered table-hover">
@@ -84,8 +88,8 @@
                     <th style="width: 12%">員工編號</th>
                     <th style="width: 11%">員工名稱</th>
                     <th style="width: 15%">行程主題</th>
-                    <th style="width: 15%">預約日期</th>
-                    <th style="width: 16%">備註欄</th>
+                    <th style="width: 12%">預約日期</th>
+                    <th style="width: 19%">備註欄</th>
                     <th style="width: 5%"></th>
                 </tr>
             </thead>
@@ -120,7 +124,8 @@
                             {
                                 'data': null,
                                 render: function (data, type, row, meta) {
-                                    return "<a id='update' href='#' class='fa fa-pencil'data-toggle='modal' data-target='#myModal' style='color:cornflowerblue;text-decoration:none' >&nbsp;</a><a id='delete' href='#' class='fa fa-trash-o' style='color:cornflowerblue;text-decoration:none' ></a>"
+                                    $("#TripIDHiddenField").val(data.TripID)
+                                    return "<a id='update' href='#' class='fa fa-pencil' data-toggle='modal' data-target='#myModal' style='color:cornflowerblue;text-decoration:none' ></a>&nbsp;<a id='DeleteSchedule' href='#' class='fa fa-trash-o' style='color:cornflowerblue;text-decoration:none' ></a>"
                                 }
                             }
                         ],
@@ -142,29 +147,28 @@
                             }
                         }
                     });
-                    $("#CustomerTable tbody").on('click', '#update', function () {
+                    $("#BusinessScheduleTable tbody").on('click', '#update', function () {
                         var data = datatableVariable.row($(this).parents('tr')).data();
                         var data2 = datatableVariable.row($(this).parents('tr'));
+                        $("#MainContentPlaceHolder_HiddenField1").val(data.TripID);
+                        $("#MainContentPlaceHolder_TripID").val(data.TripID);
                         $("#MainContentPlaceHolder_CompanyID").val(data.CompanyID);
                         $("#MainContentPlaceHolder_CompanyName").val(data.CompanyName);
-                        $("#MainContentPlaceHolder_CompanyAddress").val(data.CompanyAddress);
-                        $("#MainContentPlaceHolder_CompanyPhone").val(data.CompanyPhone);
-                        $("#MainContentPlaceHolder_OfficialWebsite").val(data.OfficialWebsite);
-                        $("#MainContentPlaceHolder_ContactPerson").val(data.ContactPerson);
-                        $("#MainContentPlaceHolder_CP_Phone").val(data.CP_Phone);
-                        $("#MainContentPlaceHolder_CP_Email").val(data.CP_Email);
-                        $("#MainContentPlaceHolder_CompanyScale").val(data.CompanyScale);
-                        $("#MainContentPlaceHolder_CompanyCategory").val(data.CompanyCategory);
+                        $("#MainContentPlaceHolder_EmployeeID").val(data.EmployeeID);
+                        $("#MainContentPlaceHolder_EmployeeName").val(data.EmployeeName);
+                        $("#MainContentPlaceHolder_TripTheme").val(data.TripTheme);
+                        $("#MainContentPlaceHolder_TargetDate").val(data.TargetDate);
+                        $("#MainContentPlaceHolder_Memo").val(data.Memo);
                     });
 
-                    $("#CustomerTable tbody").on('click', '#delete', function () {
+                    $("#BusinessScheduleTable tbody").on('click', '#DeleteSchedule', function () {
                         var data = datatableVariable.row($(this).parents('tr')).data();
                         var data2 = datatableVariable.row($(this).parents('tr'));
                         if (confirm("確定刪除")) {
                             $.ajax({
                                 type: "POST",
-                                url: "CRM_WebService.asmx/Delete",
-                                data: JSON.stringify({ id: data.CompanyID }),
+                                url: "CRM_WebService.asmx/DeleteSchedule",
+                                data: JSON.stringify({ id: data.TripID }),
                                 contentType: "application/json; charset=utf-8",
                                 dataType: "json",
                                 success: function (response) {
@@ -179,7 +183,7 @@
                         }
                     });
                     $("#CloseBtn").click(function () {
-                        $("#CustomerTable_wrapper").toggle(500);
+                        $("#BusinessScheduleTable_wrapper").toggle(500);
                     });
 
                 }

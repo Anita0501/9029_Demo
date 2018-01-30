@@ -50,7 +50,7 @@
         </div>
         <div class="form-group">
             <asp:Label ID="Memo" runat="server" Text="備註欄" AssociatedControlID="MemoTextBox" CssClass="col-2 "></asp:Label>
-            <asp:TextBox ID="MemoTextBox" runat="server" CssClass="col-4 abc" TextMode="MultiLine"></asp:TextBox>
+            <asp:TextBox ID="MemoTextBox" runat="server" CssClass="col-4 abc" TextMode="MultiLine" style="height:80px"></asp:TextBox>
         </div>
         <br />
         <div>

@@ -39,7 +39,7 @@ public partial class BusinessSchedule : System.Web.UI.Page
     {
         try
         {
-            ErrorLab.Text = "";
+            ErrorLab.Text = "行程新增成功";
             CRM_BusinessSchedule r = new CRM_BusinessSchedule()
             {
                 //TripID = Convert.ToInt32(TripIDTextBox.Text),
@@ -57,8 +57,8 @@ public partial class BusinessSchedule : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            //ErrorLab.Text = "查無此客戶，請先建立客戶資料";
-            ErrorLab.Text = ex.Message;
+            ErrorLab.Text = "查無此客戶，請先建立客戶資料";
+            //ErrorLab.Text = ex.Message;
         }
     }
 
