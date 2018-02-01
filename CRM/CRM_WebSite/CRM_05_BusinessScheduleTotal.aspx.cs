@@ -20,7 +20,7 @@ public partial class _03_Sel_Del_Customer : System.Web.UI.Page
 
     protected void UpdateBtn_Click(object sender, EventArgs e)
     {
-        CRM_BusinessSchedule r = new CRM_BusinessSchedule() { TripID = Convert.ToInt32(HiddenField1.Value) };
+        CRM_BusinessSchedule r = new CRM_BusinessSchedule() { TripID = Convert.ToInt32(TripIDHiddenField.Value) };
         r.CompanyID = Convert.ToInt32(CompanyID.Text);
         r.CompanyName = CompanyName.Text;
         r.EmployeeID = EmployeeID.Text;

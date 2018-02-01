@@ -18,15 +18,11 @@ public class CRM_Customer
     public string CompanyCategory { get; set; }
 }
 
-//public class CompanyScale
-//{
-//    public string level0 = "請選擇公司規模";
-//    public string level1 = "100萬以下";
-//    public string level2 = "101萬-500萬";
-//    public string level3 = "501萬-1000萬";
-//    public string level4 = "1001萬-3000萬";
-//    public string level5 = "3001萬-5000萬";
-//}
+public class CompanyScales
+{
+    public string CompanyScale { get; set; }
+    public string Count { get; set; }
+}
 
 //public class CompanyCategory
 //{

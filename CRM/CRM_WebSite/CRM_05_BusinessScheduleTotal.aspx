@@ -47,10 +47,8 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="TripID" class="col-4">行程單號</label>
-<%--                        <label ID="TripID" class="text ui-widget-content ui-corner-all col-6"></label>
-                        <asp:Label ID="TripID" runat="server" Text="" class="text ui-widget-content ui-corner-all col-6"></asp:Label>--%>
                         <asp:TextBox ID="TripID" runat="server" class="text ui-widget-content ui-corner-all col-6" disabled="disabled"></asp:TextBox>
-                        <asp:HiddenField ID="HiddenField1" runat="server" />
+                        <asp:HiddenField ID="TripIDHiddenField" runat="server" />
                         <label for="CompanyID" class="col-4">統編</label>
                         <asp:TextBox ID="CompanyID" runat="server"  class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="CompanyName" class="col-4">公司名稱</label>
@@ -77,7 +75,6 @@
 
     <div class="container">
         <input id="CloseBtn" type="button" value="收折列表" class="btn btn-info btn-group-lg" />
-        <input id="TripIDHiddenField" type="hidden" />
         <br />
         <br />
         <table id="BusinessScheduleTable" class="table table-info table-bordered table-hover">
@@ -124,7 +121,6 @@
                             {
                                 'data': null,
                                 render: function (data, type, row, meta) {
-                                    $("#TripIDHiddenField").val(data.TripID)      
                                     return "<a id='update' href='#' class='fa fa-pencil' data-toggle='modal' data-toggle='tooltip'   data- placement='bottom' title='編輯' data-target='#myModal' style='color:cornflowerblue;text-decoration:none' ></a>&nbsp;<a id='DeleteSchedule' href='#' class='fa fa-trash-o' style='color:cornflowerblue;text-decoration:none' data-toggle='tooltip'  data- placement='bottom' title='刪除'></a>"
                                 }
                             }
@@ -150,7 +146,7 @@
                     $("#BusinessScheduleTable tbody").on('click', '#update', function () {
                         var data = datatableVariable.row($(this).parents('tr')).data();
                         var data2 = datatableVariable.row($(this).parents('tr'));
-                        $("#MainContentPlaceHolder_HiddenField1").val(data.TripID);
+                        $("#MainContentPlaceHolder_TripIDHiddenField").val(data.TripID);
                         $("#MainContentPlaceHolder_TripID").val(data.TripID);
                         $("#MainContentPlaceHolder_CompanyID").val(data.CompanyID);
                         $("#MainContentPlaceHolder_CompanyName").val(data.CompanyName);

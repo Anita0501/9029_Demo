@@ -98,5 +98,22 @@ public class CRM_CustomerUtility
     }
 
 
-    
+    //public List<CompanyScales> GetCompanyScales()
+    //{
+    //    DataTable dt = DBHelper.GetDataTable("select CompanyScale ,count(CompanyScale) as 'count' from CRM_Customer group by CompanyScale", null);
+
+
+    //    List<CompanyScales> rList = new List<CompanyScales>();
+
+    //    foreach (DataRow row in dt.Rows)
+    //    {
+    //        CompanyScales r = new CompanyScales()
+    //        {
+    //            CompanyScale = row["CompanyScale"].ToString(),
+    //            Count = row["count"].ToString()
+    //        };
+    //        rList.Add(r);
+    //    }
+    //    return rList;
+    //}
 }

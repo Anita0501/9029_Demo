@@ -76,7 +76,7 @@ public class CRM_BusinessScheduleUtility
     public void Update(CRM_BusinessSchedule r)
     {
         DBHelper.RunTSQL(
-            "update CRM_BusinessSchedule  set CompanyID=@cpid,CompanyName=@cpname,EmployeeID=@empname,EmployeeName=@empname,TripTheme=@trip,TargetDate=@target,Memo=@memo  where TripID=@id",
+            "update CRM_BusinessSchedule  set CompanyID=@cpid,CompanyName=@cpname,EmployeeID=@empid,EmployeeName=@empname,TripTheme=@trip,TargetDate=@target,Memo=@memo  where TripID=@id",
             new Dictionary<string, object>() {
                     { "@id", r.TripID },
                     { "@cpid", r.CompanyID },
