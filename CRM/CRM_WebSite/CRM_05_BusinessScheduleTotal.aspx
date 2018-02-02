@@ -29,7 +29,7 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
     <br />
-<%--    <div class="container">
+    <%--    <div class="container">
         <asp:Label ID="DeleteLab" runat="server" Text="公司統編" AssociatedControlID="DeleteTextBox" CssClass="col-2"></asp:Label>
         <asp:TextBox ID="DeleteTextBox" runat="server" CssClass="col-4"></asp:TextBox>
         <asp:Button ID="DeleteBtn" runat="server" Text="刪除" OnClick="DeleteBtn_Click" CssClass="btn btn-info col-1" />
@@ -50,9 +50,9 @@
                         <asp:TextBox ID="TripID" runat="server" class="text ui-widget-content ui-corner-all col-6" disabled="disabled"></asp:TextBox>
                         <asp:HiddenField ID="TripIDHiddenField" runat="server" />
                         <label for="CompanyID" class="col-4">統編</label>
-                        <asp:TextBox ID="CompanyID" runat="server"  class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
+                        <asp:TextBox ID="CompanyID" runat="server" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="CompanyName" class="col-4">公司名稱</label>
-                        <asp:TextBox ID="CompanyName" runat="server"  value="" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
+                        <asp:TextBox ID="CompanyName" runat="server" value="" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="EmployeeID" class="col-4">員工編號</label>
                         <asp:TextBox ID="EmployeeID" runat="server" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="EmployeeName" class="col-4">員工名稱</label>
@@ -74,8 +74,10 @@
     </div>
 
     <div class="container">
+        <asp:Button ID="ExcelBtn" runat="server" Text="匯出列表" CssClass="btn btn-info" OnClick="ExcelBtn_Click" />
         <input id="CloseBtn" type="button" value="收折列表" class="btn btn-info btn-group-lg" />
         <br />
+        <asp:Label ID="MsgLab" runat="server" Text=""></asp:Label>
         <br />
         <table id="BusinessScheduleTable" class="table table-info table-bordered table-hover">
             <thead>
@@ -121,7 +123,7 @@
                             {
                                 'data': null,
                                 render: function (data, type, row, meta) {
-                                    return "<a id='update' href='#' class='fa fa-pencil' data-toggle='modal' data-toggle='tooltip'   data- placement='bottom' title='編輯' data-target='#myModal' style='color:cornflowerblue;text-decoration:none' ></a>&nbsp;<a id='DeleteSchedule' href='#' class='fa fa-trash-o' style='color:cornflowerblue;text-decoration:none' data-toggle='tooltip'  data- placement='bottom' title='刪除'></a>"
+                                    return "<a id='update' href='#' class='fa fa-pencil' data-toggle='modal' data-toggle='tooltip' data- placement='bottom' title='編輯' data-target='#myModal' style='color:cornflowerblue;text-decoration:none' ></a>&nbsp;<a id='DeleteSchedule' href='#' class='fa fa-trash-o' style='color:cornflowerblue;text-decoration:none' data-toggle='tooltip'  data- placement='bottom' title='刪除'></a>"
                                 }
                             }
                         ],
@@ -143,6 +145,7 @@
                             }
                         }
                     });
+
                     $("#BusinessScheduleTable tbody").on('click', '#update', function () {
                         var data = datatableVariable.row($(this).parents('tr')).data();
                         var data2 = datatableVariable.row($(this).parents('tr'));
@@ -156,7 +159,10 @@
                         $("#MainContentPlaceHolder_TargetDate").val(data.TargetDate);
                         $("#MainContentPlaceHolder_Memo").val(data.Memo);
                     });
-
+                    $("#MainContentPlaceHolder_TargetDate").datepicker({
+                        dateFormat: "yy-mm-dd",
+                        minDate: 0
+                    });
                     $("#BusinessScheduleTable tbody").on('click', '#DeleteSchedule', function () {
                         var data = datatableVariable.row($(this).parents('tr')).data();
                         var data2 = datatableVariable.row($(this).parents('tr'));

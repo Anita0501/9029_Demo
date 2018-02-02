@@ -12,14 +12,16 @@
     <li class="breadcrumb-item">客戶產業類別統計圖</li>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
+    <asp:Button ID="ExcelBtn" runat="server" Text="匯出列表" CssClass="btn btn-info" OnClick="ExcelBtn_Click" />
+    <asp:Label ID="MsgLab" runat="server" Text=""></asp:Label>
     <div class="container" style="width: 75%">
         <canvas id="myChart"></canvas>
     </div>
     <div id="myToolTip" style="position: absolute">
         <p></p>
     </div>
-    <asp:hiddenfield id="CompanyCategoryHiddenField" runat="server" />
-    <asp:hiddenfield id="CountHiddenField" runat="server" />
+    <asp:HiddenField ID="CompanyCategoryHiddenField" runat="server" />
+    <asp:HiddenField ID="CountHiddenField" runat="server" />
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="JavaScriptContentPlaceHolder" runat="Server">
     <%--    <script>
@@ -86,7 +88,7 @@
                 }
 
             },
-           
+
         });
     </script>
 </asp:Content>

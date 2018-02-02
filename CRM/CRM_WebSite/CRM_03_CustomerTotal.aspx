@@ -49,9 +49,9 @@
                         <label for="CompanyID" class="col-4">公司統編</label>
                         <asp:TextBox ID="CompanyID" runat="server" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="CompanyName" class="col-4">公司名稱</label>
-                        <asp:TextBox ID="CompanyName" runat="server"  class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
+                        <asp:TextBox ID="CompanyName" runat="server" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="CompanyAddress" class="col-4">公司地址</label>
-                        <asp:TextBox ID="CompanyAddress" runat="server"  value="" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
+                        <asp:TextBox ID="CompanyAddress" runat="server" value="" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="CompanyPhone" class="col-4">公司電話</label>
                         <asp:TextBox ID="CompanyPhone" runat="server" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="OfficialWebsite" class="col-4">公司官網</label>
@@ -84,8 +84,10 @@
 
 
     <div class="container">
+        <asp:Button ID="ExcelBtn" runat="server" Text="匯出列表" CssClass="btn btn-info" OnClick="ExcelBtn_Click" />
         <input id="CloseBtn" type="button" value="收折列表" class="btn btn-info btn-group-lg" />
         <br />
+        <asp:Label ID="MsgLab" runat="server" Text=""></asp:Label>
         <br />
         <table id="CustomerTable" class="table table-info table-bordered table-hover">
             <thead>
@@ -131,7 +133,7 @@
                             {
                                 'data': null,
                                 render: function (data, type, row, meta) {
-                                    return "<a id='update' href='#' class='fa fa-pencil'data-toggle='modal' data-target='#myModal' style='color:cornflowerblue;text-decoration:none' >&nbsp;</a><a id='delete' href='#' class='fa fa-trash-o' style='color:cornflowerblue;text-decoration:none' ></a>"
+                                    return "<a id='update' href='#' class='fa fa-pencil'data-toggle='modal'  title='編輯' data-target='#myModal' style='color:cornflowerblue;text-decoration:none' >&nbsp;</a><a id='delete' href='#' class='fa fa-trash-o' style='color:cornflowerblue;text-decoration:none' data-toggle='tooltip' data- placement='bottom' title='刪除' ></a>"
                                 }
                             }
                         ],

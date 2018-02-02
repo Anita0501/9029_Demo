@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CRM_02_Customer.aspx.cs" Inherits="_02_AddCustomer" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="CSSContentPlaceHolder" runat="Server">
-<%--    <link href="Scripts/sweetalert2.min.css" rel="stylesheet" />--%>
+        <link href="Scripts/sweetalert2.min.css" rel="stylesheet" />
+    <link href="https://cdn.bootcss.com/jquery-nice-select/1.1.0/css/nice-select.css" rel="stylesheet">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitleContentPlaceHolder" runat="Server">
     客戶關係管理
@@ -48,15 +49,15 @@
             <asp:TextBox ID="CP_EmailTextBox" runat="server" CssClass="col-4"></asp:TextBox>
         </div>
         <div class="form-group">
-            <asp:Label ID="CompanyScale" runat="server" Text="公司規模" CssClass="col-2"></asp:Label>
-            <asp:DropDownList ID="CompanyScaleDropDownList" runat="server" CssClass="col-4" DataSourceID="CompanyScales" DataTextField="CompanyScale" DataValueField="CompanyScale" AppendDataBoundItems="True">
+            <asp:Label ID="CompanyScale" runat="server" Text="公司規模" AssociatedControlID="CompanyScaleDropDownList" CssClass="col-2"></asp:Label>
+            <asp:DropDownList ID="CompanyScaleDropDownList" runat="server" CssClass="col-4 custom-select-sm" DataSourceID="CompanyScales" DataTextField="CompanyScale" DataValueField="CompanyScale" AppendDataBoundItems="True">
                 <asp:ListItem>未選擇</asp:ListItem>
             </asp:DropDownList>
             <asp:SqlDataSource runat="server" ID="CompanyScales" ConnectionString='<%$ ConnectionStrings:CRMConnectionString1 %>' SelectCommand="SELECT [CompanyScale] FROM [CRM_CompanyScales]"></asp:SqlDataSource>
         </div>
-        <div class="form-group">
-            <asp:Label ID="CompanyCategory" runat="server" Text="產業類別" CssClass="col-2"></asp:Label>
-            <asp:DropDownList ID="CompanyCategoryDropDownList" runat="server" CssClass="col-4" DataSourceID="CompanyCategorys" DataTextField="CompanyCategory" DataValueField="CompanyCategory" AppendDataBoundItems="True">
+        <div class="box">
+            <asp:Label ID="CompanyCategory" runat="server" Text="產業類別" CssClass="col-2" AssociatedControlID="CompanyCategoryDropDownList"></asp:Label>
+            <asp:DropDownList ID="CompanyCategoryDropDownList" runat="server" CssClass="col-4 custom-select-sm" DataSourceID="CompanyCategorys" DataTextField="CompanyCategory" DataValueField="CompanyCategory" AppendDataBoundItems="True">
                 <asp:ListItem>未選擇</asp:ListItem>
             </asp:DropDownList>
             <asp:SqlDataSource runat="server" ID="CompanyCategorys" ConnectionString='<%$ ConnectionStrings:CRMConnectionString1 %>' SelectCommand="SELECT [CompanyCategory] FROM [CRM_CompanyCategorys]"></asp:SqlDataSource>
@@ -72,26 +73,29 @@
 
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="JavaScriptContentPlaceHolder" runat="Server">
-<%--    <script src="Scripts/sweetalert2.min.js"></script>--%>
+    <script src="https://cdn.bootcss.com/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+        <script src="Scripts/sweetalert2.min.js"></script>
 
-<%--    <script>
-        $(function () {
+    <script>
+        //$(function () {
 
-            $("#InsertBtn").click(function () {
+        //    $("#InsertBtn").click(function () {
 
-                swal({
-                    title: '確認新增',
-                    text: "客戶資料新增成功!",
-                    type: 'warning',
-                    showCancelButton: true,
-                }).then(
-                    function () {
-                        $("#__EVENTTARGET").val("Button1");
-                        $("#form1").submit();
-                    });
-            });
-
+        //        swal({
+        //            title: '確認新增',
+        //            text: "客戶資料新增成功!",
+        //            type: 'warning',
+        //            showCancelButton: true,
+        //        }).then(
+        //            function () {
+        //                $("#__EVENTTARGET").val("Button1");
+        //                $("#form1").submit();
+        //            });
+        //    });
+            //$('#MainContentPlaceHolder_CompanyScaleDropDownList').niceSelect();
+            //$('#MainContentPlaceHolder_CompanyCategoryDropDownList').niceSelect();
         });
-    </script>--%>
+
+    </script>
 </asp:Content>
 

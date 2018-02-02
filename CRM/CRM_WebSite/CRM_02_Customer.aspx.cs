@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 public partial class _02_AddCustomer : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -64,7 +65,7 @@ public partial class _02_AddCustomer : System.Web.UI.Page
         }
         catch (Exception)
         {
-            ErrorLab.Text = "此客戶資料已存在";
+            ErrorLab.Text = "此客戶資料錯誤";
         }
     }
 

@@ -15,7 +15,7 @@
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <!-- Fontastic Custom icon font-->
     <link rel="stylesheet" href="Content/fontastic.css">
     <!-- Google fonts - Poppins -->
@@ -29,6 +29,8 @@
     <!-- Favicon-->
     <!--網頁ICON  一點-->
     <link rel="shortcut icon" href="img/favicon.ico">
+    <link href="Content/themes/base/all.css" rel="stylesheet" />
+    <link href="Content/sweetalert2.min.css" rel="stylesheet" />
     <link href="Content/MasterStyleSheet.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="CSSContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
 
@@ -46,9 +48,9 @@
                         <!-- Search Box-->
                         <div class="search-box">
                             <button class="dismiss"><i class="icon-close"></i></button>
-                            <form id="searchForm" action="#" role="search">
+                            <%--<form id="searchForm" action="#" role="search">
                                 <input type="search" placeholder="What are you looking for..." class="form-control">
-                            </form>
+                            </form>--%>
                         </div>
                         <div class="container-fluid">
                             <div class="navbar-holder d-flex align-items-center justify-content-between">
@@ -68,8 +70,8 @@
                                 <!--右上方的一排功能-->
                                 <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                                     <!-- Search-->
-                                    <!--放大鏡搜尋功能-->
-                                    <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li>
+                                    <!--放大鏡搜尋功能 已經被我改成無意義的手指-->
+                                    <%--<li class="nav-item d-flex align-items-center"><i class="fa fa-hand-o-right" aria-hidden="true"></i></li>
                                     <!-- Notifications-->
                                     <!--鈴鐺 通知功能-->
                                     <li class="nav-item dropdown">
@@ -144,10 +146,10 @@
                                             </a></li>
                                             <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"><strong>Read all messages    </strong></a></li>
                                         </ul>
-                                    </li>
+                                    </li>--%>
                                     <!-- Logout-->
                                     <!--登出的功能-->
-                                    <li class="nav-item"><a href="01_Login.aspx" class="nav-link logout">Logout<i class="fa fa-sign-out"></i></a></li>
+                                    <li class="nav-item"><a id="SingOut" class="nav-link logout">Logout<i class="fa fa-sign-out"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -163,7 +165,7 @@
                         <div class="sidebar-header d-flex align-items-center">
                             <!--照片-->
                             <div class="avatar">
-                                <img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle">
+                                <asp:Image ID="EmpImage" runat="server" CssClass="img-fluid rounded-circle" />
                             </div>
                             <!--名字&職稱-->
                             <div class="title">
@@ -175,54 +177,39 @@
                         <!--功能清單 功能樹 一點要做的地方-->
                         <!-- li class="active" 就是停留在該頁= -->
                         <span class="heading">Main</span>
-                        <ul class="list-unstyled set-font-family">
+                        <ul class="list-unstyled set-font-family scoll-list">
                             <!--會員管理-->
-                            <li><a href="#UserDropdown" aria-expanded="false" data-toggle="collapse"><i class="icon-interface-windows"></i>帳戶管理 </a>
+                            <li><a href="#UserDropdown" aria-expanded="false" data-toggle="collapse"><i class="fa fa-user" aria-hidden="true"></i>帳戶管理 </a>
                                 <ul id="UserDropdown" class="collapse list-unstyled ">                                    
                                 </ul>
                             </li>
                             <!--表單管理-->
-                            <li><a href="#FormDropdown" aria-expanded="false" data-toggle="collapse"><i class="icon-interface-windows"></i>表單管理 </a>
+                            <li><a href="#FormDropdown" aria-expanded="false" data-toggle="collapse"><i class="fa fa-file-text-o" aria-hidden="true"></i>表單系統 </a>
                                 <ul id="FormDropdown" class="collapse list-unstyled ">
-                                    <li><a href="#">Page</a></li>
-                                    <li><a href="#">Page</a></li>
-                                    <li><a href="#">Page</a></li>
                                 </ul>
                             </li>
                             <!--資產器材租借管理-->
-                            <li><a href="#AssetEquipmentRentalDropdown" aria-expanded="false" data-toggle="collapse"><i class="icon-interface-windows"></i>資產器材租借管理 </a>
+                            <li><a href="#AssetEquipmentRentalDropdown" aria-expanded="false" data-toggle="collapse"><i class="fa fa-eyedropper" aria-hidden="true"></i>資產器材租借管理 </a>
                                 <ul id="AssetEquipmentRentalDropdown" class="collapse list-unstyled ">
-                                    <li><a href="#">Page</a></li>
-                                    <li><a href="#">Page</a></li>
-                                    <li><a href="#">Page</a></li>
                                 </ul>
                             </li>
                             <!--福委會管理-->
-                            <li><a href="#CommissionDropdown" aria-expanded="false" data-toggle="collapse"><i class="icon-interface-windows"></i>福委會管理 </a>
-                                <ul id="CommissionDropdown" class="collapse list-unstyled ">
-                                    <li><a href="#">Page</a></li>
-                                    <li><a href="#">Page</a></li>
-                                    <li><a href="#">Page</a></li>
+                            <li><a href="#CommissionDropdown" aria-expanded="false" data-toggle="collapse"><i class="fa fa-futbol-o" aria-hidden="true"></i>福委會管理 </a>
+                                <ul id="CommissionDropdown" class="collapse list-unstyled ">                                
                                 </ul>
                             </li>
                             <!--客戶關係管理-->
-                            <li><a href="#CRMDropdown" aria-expanded="false" data-toggle="collapse"><i class="icon-interface-windows"></i>客戶關係管理 </a>
+                            <li><a href="#CRMDropdown" aria-expanded="false" data-toggle="collapse"><i class="fa fa-handshake-o" aria-hidden="true"></i>客戶關係管理 </a>
                                 <ul id="CRMDropdown" class="collapse list-unstyled ">
-                                    <li><a href="#">Page</a></li>
-                                    <li><a href="#">Page</a></li>
-                                    <li><a href="#">Page</a></li>
                                 </ul>
                             </li>
                             <!--公佈欄-->
-                            <li><a href="#BillboardDropdown" aria-expanded="false" data-toggle="collapse"><i class="icon-interface-windows"></i>公佈欄 </a>
+                            <li><a href="#BillboardDropdown" aria-expanded="false" data-toggle="collapse"><i class="fa fa-bullhorn" aria-hidden="true"></i>公佈欄 </a>
                                 <ul id="BillboardDropdown" class="collapse list-unstyled ">
-                                    <li><a href="#">Page</a></li>
-                                    <li><a href="#">Page</a></li>
-                                    <li><a href="#">Page</a></li>
                                 </ul>
                             </li>
                             <!--登出-->
-                            <li><a href="01_Login.aspx"><i class="icon-interface-windows"></i>登出</a></li>
+                            <li><a id="SingOut2"><i class="fa fa-sign-out" aria-hidden="true"></i>登出</a></li>
                         </ul>
                     </nav>
                     <!--右方的全部-->
@@ -242,13 +229,16 @@
                         <div class="breadcrumb-holder container-fluid">
                             <ul class="breadcrumb set-font-family">
                                 <asp:ContentPlaceHolder ID="SiteMapContentPlaceHolder" runat="server">
-
+                                    <!--
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active">Charts            </li>
+                                        -->
                                 </asp:ContentPlaceHolder>
 
                             </ul>
                         </div>
                         <!--主要功能區-->
-                        <div class="set-font-family">
+                        <div class="set-font-family scoll-div">
                             <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
                                 <!--大家的code放這邊-->
                             </asp:ContentPlaceHolder>
@@ -271,8 +261,10 @@
                 </div>
             </div>   
             <asp:HiddenField ID="EmployeeHiddenField" runat="server" />
+            <asp:HiddenField ID="urlHiddenField" runat="server" />
             <!-- Javascript files-->
             <script src="Scripts/jquery-3.1.1.min.js"></script>
+            <script src="Scripts/jquery-ui-1.12.1.min.js"></script>
             <script src="vendor/popper.js/umd/popper.min.js"> </script>
             <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
             <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
@@ -281,6 +273,7 @@
             <script src="Scripts/charts-custom.js"></script>
             <!-- Main File-->
             <script src="Scripts/front.js"></script>
+            <script src="Scripts/sweetalert2.min.js"></script>
             <script src="Scripts/MasterPageJavaScript.js"></script>
             <asp:ContentPlaceHolder ID="JavaScriptContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
         </div>

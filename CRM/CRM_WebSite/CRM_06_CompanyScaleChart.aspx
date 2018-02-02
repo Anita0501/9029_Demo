@@ -12,6 +12,8 @@
     <li class="breadcrumb-item">客戶公司規模統計圖</li>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
+    <asp:Button ID="ExcelBtn" runat="server" Text="匯出列表" CssClass="btn btn-info" OnClick="ExcelBtn_Click" />
+    <asp:Label ID="MsgLab" runat="server" Text=""></asp:Label>
     <div class="container  chartjs-render-monitor" style="width: 75%">
         <canvas id="myChart"></canvas>
     </div>
@@ -66,7 +68,7 @@
                 },
                 hover: {
                     mode: 'label',
-                    animationDuration:500
+                    animationDuration: 500
                 },
                 tooltips: {
                     bodyFontSize: 20,
