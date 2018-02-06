@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CRM_07_CompanyCategoryChart .aspx.cs" Inherits="CRM_06_CompanyChart" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CRM_07_CompanyCategoryChart.aspx.cs" Inherits="CRM_06_CompanyChart" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="CSSContentPlaceHolder" runat="Server">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
@@ -14,6 +14,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
     <asp:Button ID="ExcelBtn" runat="server" Text="匯出列表" CssClass="btn btn-info" OnClick="ExcelBtn_Click" />
     <asp:Label ID="MsgLab" runat="server" Text=""></asp:Label>
+
     <div class="container" style="width: 75%">
         <canvas id="myChart"></canvas>
     </div>
@@ -24,21 +25,6 @@
     <asp:HiddenField ID="CountHiddenField" runat="server" />
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="JavaScriptContentPlaceHolder" runat="Server">
-    <%--    <script>
-        var ctx = document.getElementById("myChart");
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: document.getElementById("MainContentPlaceHolder_CompanyScaleHiddenField").value.split(","),
-                datasets: [{
-                    label: '客戶公司規模',
-                    data: document.getElementById("MainContentPlaceHolder_CountHiddenField").value.split(","),
-                    borderWidth: 1,
-                    backgroundColor: GetRandomColors(5)
-                }]
-            }
-        });
-    </script>--%>
     <script>
         var ctx = document.getElementById("myChart").getContext("2d");
         var myChart = new Chart(ctx, {
@@ -58,10 +44,8 @@
                         'rgba(153, 102, 255,0.5)',
                         'rgba(231,233,237,0.5)'
                     ],
-                    //fontSize: 10
                 }]
             },
-            //scaleShowLine: true,
             scaleOverride: false,
             options: {
                 title: {
@@ -78,17 +62,15 @@
                         fontStyle: 'bold'
                     }
                 },
-                hover: {
-                    mode: 'label',
-                    animationDuration: 500
-                },
+                //hover: {
+                //    mode: 'label',
+                //    animationDuration: 5000
+                //},
                 tooltips: {
                     mode: 'index',
                     bodyFontSize: 20,
                 }
-
             },
-
         });
     </script>
 </asp:Content>

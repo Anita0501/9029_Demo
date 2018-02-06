@@ -68,7 +68,7 @@
                 },
                 hover: {
                     mode: 'label',
-                    animationDuration: 500
+                    animationDuration: 5000
                 },
                 tooltips: {
                     bodyFontSize: 20,

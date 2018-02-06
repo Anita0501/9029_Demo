@@ -1,0 +1,84 @@
+﻿/*一點修改的CSS*/
+.set-font-family {
+    font-family: 微軟正黑體;
+}
+
+.deep-font-colour {
+    color: #1d1d1d;
+    font-weight: bold;
+}
+
+.form-control-label {
+    padding-top: 7px;
+    margin-bottom: 0;
+    text-align: right;
+    color: #202123;
+    font-weight: 400;
+}
+
+body {
+    position: relative;
+    top: 70px;
+}
+
+.bd-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1071;
+}
+
+.header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin: auto;
+}
+
+@media screen and (max-width:1000px) {
+    .header {
+        width: auto
+    }
+}
+
+@media (min-width:1200px) {
+    .content-inner {
+        position: relative;
+        width: calc(100% - 250px);
+        min-height: calc(100vh - 70px);
+        left: 250px;
+    }
+
+        .content-inner.active {
+            left: 90px;
+        }
+
+    nav.side-navbar {
+        position: fixed;
+        height: calc(100% - 70px);
+    }
+}
+
+.content-inner.active {
+    width: calc(100% - 90px);
+    position: relative;
+}
+
+.scoll-list {
+    height: calc(100% - 150px);
+    overflow-y: scroll;
+}
+
+.scoll-div {
+    /*height: calc(100% - 150px);*/
+    overflow-x: scroll;
+}
+
+div,
+li,
+button,
+input[type='submit'],
+span,
+.h4 {
+    font-family: 微軟正黑體 !important;
+}

@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CRM_03_CustomerTotal.aspx.cs" Inherits="_03_Sel_Del_Customer" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="CSSContentPlaceHolder" runat="Server">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.2/sweetalert2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 
@@ -111,6 +112,8 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.2/sweetalert2.min.js"></script>
+
     <script>
         $(function () {
             $.ajax({
@@ -133,7 +136,7 @@
                             {
                                 'data': null,
                                 render: function (data, type, row, meta) {
-                                    return "<a id='update' href='#' class='fa fa-pencil'data-toggle='modal'  title='編輯' data-target='#myModal' style='color:cornflowerblue;text-decoration:none' >&nbsp;</a><a id='delete' href='#' class='fa fa-trash-o' style='color:cornflowerblue;text-decoration:none' data-toggle='tooltip' data- placement='bottom' title='刪除' ></a>"
+                                    return "<a id='update' href='#' class='fa fa-pencil' data-toggle='modal'  title='編輯' data-target='#myModal' style='color:cornflowerblue;text-decoration:none' >&nbsp;</a><a id='delete' href='#' class='fa fa-trash-o' style='color:cornflowerblue;text-decoration:none' data-toggle='tooltip' data- placement='bottom' title='刪除' ></a>"
                                 }
                             }
                         ],
@@ -170,27 +173,107 @@
                         $("#MainContentPlaceHolder_CompanyCategory").val(data.CompanyCategory);
                     });
 
+
+
+
+                    //$("#CustomerTable tbody").on('click', '#delete', function () {
+                    //    var data = datatableVariable.row($(this).parents('tr')).data();
+                    //    var data2 = datatableVariable.row($(this).parents('tr'));
+
+                    //    if (swal({
+                    //        title: '确定删除吗？',
+                    //        text: '你将无法恢复它！',
+                    //        type: 'warning',
+                    //        showCancelButton: true,
+                    //        confirmButtonColor: '#3085d6',
+                    //        cancelButtonColor: '#d33',
+                    //        confirmButtonText: '确定删除！',
+                    //        cancelButtonText: '取消删除！',
+                    //        confirmButtonClass: 'btn btn-success',
+                    //        cancelButtonClass: 'btn btn-danger',
+                    //        buttonsStyling: false
+                    //    })) {
+                    //        $.ajax({
+                    //            type: "POST",
+                    //            url: "CRM_WebService.asmx/Delete",
+                    //            data: JSON.stringify({ id: data.CompanyID }),
+                    //            contentType: "application/json; charset=utf-8",
+                    //            dataType: "json",
+                    //            success: function (response) {
+                    //                swal('刪除成功',
+                    //                    '客戶資料已刪除',
+                    //                    'success'
+                    //                );
+                    //                data2.remove().draw(false);
+                    //            }
+                    //        });
+
+                    //    }
+                    //    else {
+                    //        swal('刪除取消',
+                    //            '已取消',
+                    //            'error');
+                    //    }
+                    //});
                     $("#CustomerTable tbody").on('click', '#delete', function () {
+
                         var data = datatableVariable.row($(this).parents('tr')).data();
                         var data2 = datatableVariable.row($(this).parents('tr'));
-                        if (confirm("確定刪除")) {
-                            $.ajax({
-                                type: "POST",
-                                url: "CRM_WebService.asmx/Delete",
-                                data: JSON.stringify({ id: data.CompanyID }),
-                                contentType: "application/json; charset=utf-8",
-                                dataType: "json",
-                                success: function (response) {
-                                    alert('刪除成功');
-                                    data2.remove().draw(false);
-                                }
-                            });
-
-                        }
-                        else {
-                            alert("刪除取消");
-                        }
+                        //swal({
+                        //    title: "確定刪除？",
+                        //    text: "按下確定後資料會永久刪除",
+                        //    type: "question",
+                        //    showCancelButton: true//顯示取消按鈕
+                        //}).then(
+                        //    function () {
+                        //        $.ajax({
+                        //            type: "POST",
+                        //            url: "CRM_WebService.asmx/Delete",
+                        //            data: JSON.stringify({ id: data.CompanyID }),
+                        //            contentType: "application/json; charset=utf-8",
+                        //            dataType: "json",
+                        //            success: function (response) {
+                        //                swal("完成!", "資料已經刪除", "success");
+                        //                data2.remove().draw(false);
+                        //            }
+                        //        });
+                        //    },
+                        //    function (dismiss) {
+                        //        if (dismiss === "cancel") {
+                        //            swal("取消", "資料未被刪除", "error")
+                        //        }
+                        //    });
+                        swal({
+                            title: "確定刪除？",
+                            text: "按下確定後資料會永久刪除",
+                            type: "question",
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: '確定刪除!',
+                            cancelButtonText: '取消'
+                        }).then((result) => {
+                            if (result.value) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "CRM_WebService.asmx/Delete",
+                                    data: JSON.stringify({ id: data.CompanyID }),
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    success: function (response) {
+                                        swal("完成!", "資料已經刪除", "success");
+                                        data2.remove().draw(false);
+                                    }
+                                });
+                            }
+                        })
                     });
+
+                    
+
+
+
+
                     $("#CloseBtn").click(function () {
                         $("#CustomerTable_wrapper").toggle(500);
                     });

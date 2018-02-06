@@ -1,0 +1,212 @@
+﻿.btn {
+    border: 2px solid transparent;
+    border-radius: 0;
+    text-transform: uppercase;
+    position: relative;
+    transition: all 0.3s ease 0s;
+}
+
+    .btn:before {
+        content: "";
+        height: 6px;
+        border-bottom: 2px solid transparent;
+        border-left: 2px solid transparent;
+        position: absolute;
+        bottom: -8px;
+        left: 4px;
+        right: -8px;
+        transition: all 0.3s ease 0s;
+    }
+
+    .btn.btn-sm:before {
+        height: 5px;
+        bottom: -7px;
+        left: 4px;
+        right: -6px;
+    }
+
+    .btn:hover:before {
+        bottom: -2px;
+        left: -2px;
+        right: 2px;
+        border-color: #e16b47;
+    }
+
+    .btn:after {
+        content: "";
+        width: 6px;
+        border-right: 2px solid transparent;
+        border-top: 2px solid transparent;
+        position: absolute;
+        bottom: -8px;
+        right: -8px;
+        top: 4px;
+        transition: all 0.3s ease 0s;
+    }
+
+    .btn.btn-sm:after {
+        width: 5px;
+        bottom: -7px;
+        top: 2px;
+        right: -7px;
+    }
+
+    .btn:hover:after {
+        bottom: 2px;
+        right: -2px;
+        top: -2px;
+        border-color: white;
+    }
+
+    .btn.gray,
+    .btn.gray:before,
+    .btn.gray:after {
+        float: right;
+        border-color: #acb7c0;
+        color: #acb7c0;
+    }
+
+    /*.btn.green,
+    .btn.green:before,
+    .btn.green:after {
+        float: right;
+        border-color: #7ad79a;
+        color: #7ad79a;
+    }*/
+
+    /*粉紅色.btn.green,
+    .btn.green:before,
+    .btn.green:after {
+        float: right;
+        border-color: #ffb3b3;
+        color: #ff7b7b;
+    }*/
+
+    .btn.green,
+    .btn.green:before,
+    .btn.green:after {
+        float: right;
+        border-color: orange;
+        color: orange;
+    }
+
+    /*.btn.orange,
+    .btn.orange:before,
+    .btn.orange:after {
+        float: right;
+        border-color: #ffbb55;
+        color: #ffbb55;
+    }*/
+
+    /*藍紫色.btn.orange,
+    .btn.orange:before,
+    .btn.orange:after {
+        float: right;
+        border-color: #abadc5;
+        color: #5d698a;
+    }*/
+
+    .btn.orange,
+    .btn.orange:before,
+    .btn.orange:after {
+        float: right;
+        border-color: #617f8b;
+        color: #617f8b;
+    }
+
+
+
+@media only screen and (max-width: 767px) {
+    .btn {
+        margin-bottom: 25px;
+    }
+}
+
+/*清除其他css的btn click所產生的陰影*/
+.btn:focus, .btn.focus {
+    outline: 0;
+    -webkit-box-shadow: 0 0 0 0.2rem white;
+    box-shadow: 0 0 0 0.2rem white;
+}
+
+bootstrap.min.css:6 .btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem white;
+}
+
+/*活動icon顏色class*/
+.pre-icon-shadow-color {
+    /*--rgb-color: rgb(235,135,42) !important;*/
+    --rgb-color: rgb(108,145,141) !important;
+    /*藍--rgb-color: rgb(145,191,255) !important;*/
+}
+
+.now-icon-shadow-color {
+    /*--rgb-color: rgb(169,42,42) !important;*/
+    /*藍--rgb-color: rgb(66,133,244) !important;*/
+    --rgb-color: rgb(113,133,181) !important;
+}
+
+.past-icon-shadow-color {
+    /*--rgb-color: rgb(165,161,206) !important;*/
+    /*藍--rgb-color: rgb(37,95,219) !important;*/
+    --rgb-color: rgb(150,150,150) !important;
+}
+
+/*活動卡片title顏色class*/
+.pre-title-color {
+    /*藍background-color: rgb(145,191,255);*/
+    background-color: rgb(108,145,141);
+    /*background-color: rgb(173,101,90);*/
+}
+
+.now-title-color {
+    background-color: rgb(113,133,181);
+    /*藍background-color: rgb(66,133,244);*/
+    /*background-color: rgb(255,201,14);*/
+}
+
+.past-title-color {
+    background-color: rgb(150,150,150);
+    /*background-color: rgb(64,112,118);*/
+    /*藍background-color: rgb(37,95,219);*/
+}
+
+/*活動卡片小三角形顏色class*/
+.pre-triangle-color {
+    /*--triangleColor: rgb(235,135,42);*/
+    /*藍--triangleColor: rgb(145,191,255);*/
+    --triangleColor: rgb(108,145,141);
+}
+
+.now-triangle-color {
+    /*--triangleColor: rgb(169,42,42);*/
+    /*藍--triangleColor: rgb(66,133,244);*/
+    --triangleColor: rgb(113,133,181);
+}
+
+.past-triangle-color {
+    /*--triangleColor: rgb(165,161,206);*/
+    /*藍--triangleColor: rgb(37,95,219);*/
+    --triangleColor: rgb(150,150,150);
+}
+
+/*Detail Page*/
+#content {
+    width: calc(100% - 380px);
+    margin-right: 20px;
+    float: left;
+    border: #0000FF 5px solid;
+}
+
+.radio-btn {
+    padding-top: 7px;
+    padding-left: 22px;
+}
+
+.unblock {
+    display: initial;
+}
+
+/*咖啡色color: rgb(118,65,30);*/
+

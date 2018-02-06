@@ -64,7 +64,8 @@
         </div>
         <br />
         <div>
-            <asp:Button ID="InsertBtn" CssClass="btn btn-info offset-2 col-1" runat="server" Text="新增" OnClick="InsertBtn_Click" />
+            <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+            <asp:Button ID="InsertBtn" CssClass="btn btn-info offset-2 col-1" runat="server" Text="新增" OnClick="InsertBtn_Click" OnClientClick="return false" />
             <asp:Button ID="UpdateBtn" CssClass="btn btn-info col-1" runat="server" Text="修改" OnClick="UpdateBtn_Click" />
             <asp:Button ID="CancelBtn" CssClass="btn btn-info col-1" runat="server" Text="取消" OnClick="CancelBtn_Click" />
             <asp:Button ID="Demobtn" CssClass="btn btn-default offset-2 col-1" runat="server" Text="Demo" OnClick="Demobtn_Click" />
@@ -77,21 +78,21 @@
         <script src="Scripts/sweetalert2.min.js"></script>
 
     <script>
-        //$(function () {
+        $(function () {
 
-        //    $("#InsertBtn").click(function () {
+            $("#MainContentPlaceHolder_InsertBtn").click(function () {
 
-        //        swal({
-        //            title: '確認新增',
-        //            text: "客戶資料新增成功!",
-        //            type: 'warning',
-        //            showCancelButton: true,
-        //        }).then(
-        //            function () {
-        //                $("#__EVENTTARGET").val("Button1");
-        //                $("#form1").submit();
-        //            });
-        //    });
+                swal({
+                    title: '確認新增',
+                    text: "客戶資料新增成功!",
+                    type: 'warning',
+                    showCancelButton: true,
+                }).then(
+                    function () {
+                        $("#__EVENTTARGET").val("MainContentPlaceHolder_InsertBtn");
+                        $("#form1").submit();
+                    });
+            });
             //$('#MainContentPlaceHolder_CompanyScaleDropDownList').niceSelect();
             //$('#MainContentPlaceHolder_CompanyCategoryDropDownList').niceSelect();
         });
