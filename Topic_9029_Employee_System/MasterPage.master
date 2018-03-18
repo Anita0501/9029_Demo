@@ -31,7 +31,26 @@
     <link rel="shortcut icon" href="./img/favicon.ico">
     <link href="/Content/themes/base/all.css" rel="stylesheet" />
     <link href="/Content/sweetalert2.min.css" rel="stylesheet" />
-    <link href="/Content/MasterStyleSheet.css" rel="stylesheet" />
+    <style>
+        div,
+        li,
+        button,
+        input[type='submit'],
+        span,
+        .h4,
+        h1 {
+            font-family: 微軟正黑體 !important;
+        }
+
+                .form-control-label {
+            padding-top: 7px;
+            margin-bottom: 0;
+            text-align: right;
+            color: #202123;
+            font-weight: 400;
+        }
+    </style>
+
     <asp:ContentPlaceHolder ID="CSSContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
 
 </head>
@@ -58,9 +77,9 @@
                                 <div class="navbar-header">
                                     <!-- Navbar Brand -->
                                     <!--左上方不知道會連到哪的連結-->
-                                    <a href="index.html" class="navbar-brand">
-                                        <div class="brand-text brand-big"><span>Bootstrap </span><strong>Dashboard</strong></div>
-                                        <div class="brand-text brand-small"><strong>BD</strong></div>
+                                    <a href="#" class="navbar-brand">
+                                        <div class="brand-text brand-big"><span>9029 </span><strong>公司員工系統</strong></div>
+                                        <div class="brand-text brand-small"><strong>9029</strong></div>
                                     </a>
                                     <!-- Toggle Button-->
                                     <!--功能選單的按鍵-->
@@ -248,11 +267,11 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <p>Your company &copy; 2017-2019</p>
+                                        <p><%--Your company &copy; 2017-2019--%></p>
                                     </div>
                                     <div class="col-sm-6 text-right">
-                                        <p>Design by <a href="https://bootstrapious.com/admin-templates" class="external">Bootstrapious</a></p>
-                                        <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+<%--                                        <p>Design by <a href="https://bootstrapious.com/admin-templates" class="external">Bootstrapious</a></p>
+                                        <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->--%>
                                     </div>
                                 </div>
                             </div>

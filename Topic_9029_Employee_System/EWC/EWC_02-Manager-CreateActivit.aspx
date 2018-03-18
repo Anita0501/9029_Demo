@@ -8,17 +8,18 @@
         string rnd = DateTime.Now.Millisecond.ToString();
 
         AtvIDBox.Text = "18S" + rnd;
-        AtvTypeDDL.SelectedIndex = 3;
+        AtvTypeDDL.SelectedIndex = 0;
         //CompanyAmtDDL.SelectedIndex = 0;
-        AtvTitleBox.Text = "2017恆逸台北年終尾牙";
+        AtvTitleBox.Text = "春遊：武陵賞櫻漫步櫻花林";
         //ActiveDateBox.Text = "2018/02/12";
-        //AtvSDate.Text = "2018/02/15";
+        AtvSDate.Text = "2018-03-16";
         //AtvEDate.Text = "2018/02/15";
-        AtvSTime.Text = "6:00pm";
-        AtvETime.Text = "10:00pm";
-        AtvlocatBox.Text = "台北市忠孝東路五段10號";
-        AtvNoteBox.Text = "這是備註";
-        AtvDescBox.Text = "這是活動說明";
+        //AtvSTime.Text = "6:00pm";
+        //AtvETime.Text = "10:00pm";
+        AtvlocatBox.Text = "集合地點：台北車站東三門";
+        AtvNoteBox.Text = "賞櫻注意事項：多一點距離，櫻花會更美。勿攀折花枝，與他人共賞!!";
+        AtvDescBox.Text = "希望同仁為公司打拼的同時不忘陪伴家人，因此舉辦家庭日邀請家屬攜手出遊提升家庭活動的參與度，增進家屬對員工工作的了解和參與感。";
+        
         //AtvDaysRB_0.Checked = true;
         //SignUpRB_0.Checked = true;
 
@@ -120,10 +121,10 @@
     <link href="css/Atv_btn.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitleContentPlaceHolder" runat="Server">
-    福委會管理
+    福委會活動管理
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="SiteMapContentPlaceHolder" runat="Server">
-    <li class="breadcrumb-item">福委會管理</li>
+    <li class="breadcrumb-item">福委會活動管理</li>
     <li class="breadcrumb-item active">建立活動</li>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
@@ -295,6 +296,18 @@
 
     <script>
         $(function () {
+            $.datepicker.regional['zh-TW'] = {
+                dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+                dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
+                monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+                monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+                prevText: "上月",
+                nextText: "次月",
+                weekHeader: "週"
+            };
+            //將預設語系設定為中文
+            $.datepicker.setDefaults($.datepicker.regional["zh-TW"]);
+
             //隱藏報名日期和生效日期
             $('#SignUpFeild').hide();
             $('#AtcDate').hide();
@@ -353,16 +366,16 @@
             $(".Time").timepicker({
                 timeFormat: 'h:mm p',
                 interval: 30,
-                minTime: '12:00ap',
+                minTime: '12:00am',
                 maxTime: '11:30pm',
-                defaultTime: '11',
+                defaultTime: '11:30am',
                 startTime: '08:00',
                 dynamic: false,
                 dropdown: true,
                 scrollbar: true
 
             });
-            
+
             $("#MainContentPlaceHolder_SignUpRB_1").attr("class", "radio-template");
             $("#MainContentPlaceHolder_SignUpRB_0").attr("class", "radio-template");
             $("#MainContentPlaceHolder_AtvDaysRB_1").attr("class", "radio-template");

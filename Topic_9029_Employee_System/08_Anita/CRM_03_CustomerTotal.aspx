@@ -30,9 +30,10 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
     <br />
     <div class="container">
-        <asp:Label ID="InsertCompanyScales" runat="server" Text="產業類別" AssociatedControlID="InsertCompanyScalesTextBox" CssClass="col-2"></asp:Label>
-        <asp:TextBox ID="InsertCompanyScalesTextBox" runat="server" CssClass="col-4"></asp:TextBox>
-        <asp:Button ID="InsertCompanyScalesBtn" runat="server" Text="新增" OnClick="InsertCompanyScalesBtn_Click" CssClass="btn btn-info col-1" />
+        <asp:Label ID="InsertCompanyCategorys" runat="server" Text="產業類別" AssociatedControlID="InsertCompanyCategorysTextBox" CssClass="col-2"></asp:Label>
+        <asp:TextBox ID="InsertCompanyCategorysTextBox" runat="server" CssClass="col-4" placeholder="請輸入需要新增的產業類別"></asp:TextBox>
+        <asp:Button ID="InsertCompanyCategorysBtn" runat="server" Text="新增" OnClick="InsertCompanyCategorysBtn_Click" CssClass="btn btn-info offset-1 col-1-sm" />
+        <asp:Label ID="Label1" runat="server" Text="消費性電子產品製造業" Style="color: #F0F8FF"></asp:Label>
     </div>
     <hr />
     <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -49,9 +50,9 @@
                         <label for="CompanyID" class="col-4">公司統編</label>
                         <asp:TextBox ID="CompanyID" runat="server" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="CompanyName" class="col-4">公司名稱</label>
-                        <asp:TextBox ID="CompanyName" runat="server"  class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
+                        <asp:TextBox ID="CompanyName" runat="server" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="CompanyAddress" class="col-4">公司地址</label>
-                        <asp:TextBox ID="CompanyAddress" runat="server"  value="" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
+                        <asp:TextBox ID="CompanyAddress" runat="server" value="" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="CompanyPhone" class="col-4">公司電話</label>
                         <asp:TextBox ID="CompanyPhone" runat="server" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="OfficialWebsite" class="col-4">公司官網</label>
@@ -85,6 +86,8 @@
 
     <div class="container">
         <input id="CloseBtn" type="button" value="收折列表" class="btn btn-info btn-group-lg" />
+        <asp:Button ID="ExcelBtn" runat="server" Text="匯出列表" CssClass="btn btn-info" OnClick="ExcelBtn_Click" />
+        <asp:Label ID="MsgLab" runat="server" Text="" Style="color: dodgerblue"></asp:Label>
         <br />
         <br />
         <table id="CustomerTable" class="table table-info table-bordered table-hover">
@@ -109,7 +112,7 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="../Scripts/jquery-ui-1.12.1.min.js"></script>
-<%--    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>--%>
+
     <script>
         $(function () {
             $.ajax({
@@ -169,7 +172,36 @@
                         $("#MainContentPlaceHolder_CompanyCategory").val(data.CompanyCategory);
                     });
 
+                    //$("#CustomerTable tbody").on('click', '#delete', function () {
+                    //    var data = datatableVariable.row($(this).parents('tr')).data();
+                    //    var data2 = datatableVariable.row($(this).parents('tr'));
+                    //    swal({
+                    //        title: "確定刪除？",
+                    //        text: "按下確定後資料會永久刪除",
+                    //        type: "question",
+                    //        showCancelButton: true,
+                    //        confirmButtonColor: '#3085d6',
+                    //        cancelButtonColor: '#d33',
+                    //        confirmButtonText: '確定刪除!',
+                    //        cancelButtonText: '取消'
+                    //    }).then((result) => {
+                    //        if (result.value) {
+                    //            $.ajax({
+                    //                type: "POST",
+                    //                url: "CRM_WebService.asmx/Delete",
+                    //                data: JSON.stringify({ id: data.CompanyID }),
+                    //                contentType: "application/json; charset=utf-8",
+                    //                dataType: "json",
+                    //                success: function (response) {
+                    //                    swal("完成!", "資料已經刪除", "success");
+                    //                    data2.remove().draw(false);
+                    //                }
+                    //            });
+                    //        }
+                    //    })
+                    //});
                     $("#CustomerTable tbody").on('click', '#delete', function () {
+
                         var data = datatableVariable.row($(this).parents('tr')).data();
                         var data2 = datatableVariable.row($(this).parents('tr'));
                         swal({
@@ -179,10 +211,10 @@
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
                             cancelButtonColor: '#d33',
-                            confirmButtonText: '確定刪除!',
+                            confirmButtonText: '確定',
                             cancelButtonText: '取消'
                         }).then((result) => {
-                            if (result.value) {
+                            if (result) {
                                 $.ajax({
                                     type: "POST",
                                     url: "CRM_WebService.asmx/Delete",
@@ -204,11 +236,11 @@
                     });
 
                 }
-               
 
-            
-                
-            
+
+
+
+
             });
         });
     </script>

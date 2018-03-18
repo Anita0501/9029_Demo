@@ -7,9 +7,10 @@
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 5px;
-    width: 150px;
+    width: 180px;
+    height: 120px;
     float: left;
-    margin-right:18px;
+    margin-right: 18px;
     /*margin-top:15px;*/
 }
 

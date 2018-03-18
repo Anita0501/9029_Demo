@@ -10,6 +10,8 @@
 
         //正式
         string qs = Request.QueryString["Album"];
+        string qs2 = Request.QueryString["admin"];
+
         List<string> qsl = new List<string>();
 
         foreach (var item in qs.Split(','))
@@ -22,9 +24,16 @@
 
         AlbName_Box.Text = qsl[1];
         AlbDesc_Box.Text = qsl[2];
+
+        admin.Value = qs2;
     }
 
 
+    protected void Album_Demo_Click(object sender, EventArgs e)
+    {
+        AlbName_Box.Text = "107S1武陵櫻花漫步一日遊";
+        AlbDesc_Box.Text = "翩翩櫻花飛舞~";
+    }
 </script>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="CSSContentPlaceHolder" runat="Server">
@@ -35,10 +44,11 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitleContentPlaceHolder" runat="Server">
-    福委會管理
+    福委會活動管理
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="SiteMapContentPlaceHolder" runat="Server">
-    <li class="breadcrumb-item">福委會管理</li>
+    <li class="breadcrumb-item">福委會活動管理</li>
+    <li class="breadcrumb-item active">活動相簿</li>
     <li class="breadcrumb-item active">編輯相簿</li>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
@@ -56,6 +66,9 @@
                                 <div class="col-sm-9">
                                     <asp:TextBox ID="AlbName_Box" CssClass="form-control" runat="server"></asp:TextBox>
                                 </div>
+                                <div class="col-sm-1">
+                                    <asp:Button ID="Button1" class="btn btn-secondary btn-sm" runat="server" Text="測試資料" OnClick="Album_Demo_Click" />
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label id="AlbDesc_LB" class="col-sm-2 form-control-label">相簿描述:</label>
@@ -63,8 +76,8 @@
                                     <asp:TextBox ID="AlbDesc_Box" CssClass="form-control" runat="server"></asp:TextBox>
                                 </div>
                             </div>
-                            <div class="line"  style="width: 100%; height: 1px; border-bottom: 1px dashed #eee; margin: 30px 0;"></div>
-                            <table class="table table-striped table-sm table-hover" style="width:940px;position: relative;left: 22%;">
+                            <div class="line" style="width: 100%; height: 1px; border-bottom: 1px dashed #eee; margin: 30px 0;"></div>
+                            <table class="table table-striped table-sm table-hover" style="width: 940px; position: relative; left: 22%;">
                                 <thead id="th">
                                 </thead>
                                 <tbody id="tb">
@@ -73,14 +86,14 @@
                                         <td><input id="Button1" type="button" value="button" /></td>
                                     </tr>--%>
                                 </tbody>
-                               
+
                             </table>
-                            <div class="line"  style="width: 100%; height: 1px; border-bottom: 1px dashed #eee; margin: 30px 0;"></div>
+                            <div class="line" style="width: 100%; height: 1px; border-bottom: 1px dashed #eee; margin: 30px 0;"></div>
                             <div class="form-group row">
                                 <div class="col-sm-8 offset-sm-4">
-                                    <input id="Save" class="btn btn-primary btn-sm" type="button" style="width: 200px; margin-right: 30px"  value="儲  存" />
-                                    <input id="Cancel" class="btn btn-secondary btn-sm" type="button" style="width: 200px; margin-right: 30px"  value="取  消" />
-                                    
+                                    <input id="Save" class="btn btn-primary btn-sm" type="button" style="width: 200px; margin-right: 30px" value="儲  存" />
+                                    <input id="Cancel" class="btn btn-secondary btn-sm" type="button" style="width: 200px; margin-right: 30px" value="取  消" />
+
                                     <%--<asp:Button ID="Save" CssClass="btn btn-primary btn-sm" Style="width: 200px; margin-right: 30px" runat="server" Text="送  出" />--%>
                                     <%--<asp:Button ID="Clear" CssClass="btn btn-secondary btn-sm" Style="width: 200px; margin-right: 30px" runat="server" Text="清  除" />--%>
                                     <%--<asp:Button ID="TestDataBtn" CssClass="btn btn-secondary btn-sm" Style="width: 120px;" runat="server" Text="測試資料" />--%>
@@ -89,6 +102,7 @@
                             <asp:HiddenField ID="AlbumID" runat="server" />
                             <asp:HiddenField ID="AlbumTitle" runat="server" />
                             <asp:HiddenField ID="AlbumDesc" runat="server" />
+                            <asp:HiddenField ID="admin" runat="server" />
                         </div>
                     </div>
                 </div>
@@ -131,10 +145,8 @@
                         var PhotoPath = this.FilePath.substring(6);
 
                         var tb3 = $('<img>').
-                            attr("style", "vertical-align:middle").
-                            attr("src", PhotoPath).
-                            attr("height", "150").
-                            attr("width", "180");
+                            attr("style", "vertical-align:middle; height:240px; width:360px;").
+                        attr("src", PhotoPath);
 
                         tb2.append(tb3);
 
@@ -159,8 +171,13 @@
                 }
             });
 
+            var admin = $("#MainContentPlaceHolder_admin").val(); 
             $("#Cancel").click(function () {
-                location.href = "EWC_05-User-AlbumViewer.aspx";
+                if (admin == "1") {
+                    location.href = "EWC_12-Manager-AlbumViewer.aspx";
+                } else {
+                    location.href = "EWC_05-User-AlbumViewer.aspx";
+                }
             });
 
 
@@ -191,7 +208,8 @@
                             confirmButtonText: '好'
                         }).then(
                             function () {
-                                location.reload();
+                                //location.reload();
+                                location.href = "EWC_12-Manager-AlbumViewer.aspx";
                             });
                         //var pList = response.d;
                         //var dataLength = pList.length;

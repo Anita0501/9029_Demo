@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using GemBox.Spreadsheet;
+using GemBox.Spreadsheet.Charts;
 
 public partial class CRM_06_CompanyChart : System.Web.UI.Page
 {
@@ -22,6 +23,7 @@ public partial class CRM_06_CompanyChart : System.Web.UI.Page
     protected void ExcelBtn_Click(object sender, EventArgs e)
     {
         DataTable dt = DBHelper.GetDataTable("select a.CompanyScale ,count(a.CompanyScale) as 'Count' from CRM_Customer as a left join CRM_CompanyScales as b on a.CompanyScale = b.CompanyScale group by a.CompanyScale, b.Id", null);
+        var CompanyScaleAry = dt.AsEnumerable().Select(r => r["CompanyScale"].ToString()).ToArray();
         SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
         ExcelFile xlsx = new ExcelFile();
         ExcelWorksheet mySheet = xlsx.Worksheets.Add("CompanyScaleChart");
@@ -36,8 +38,24 @@ public partial class CRM_06_CompanyChart : System.Web.UI.Page
                StartColumn = 2,
                StartRow = 2,
            });
+
+        int Length = CompanyScaleAry.Length;
+        var chart = mySheet.Charts.Add(ChartType.Pie, "G2", "O25");
+        chart.SelectData(mySheet.Cells.GetSubrangeAbsolute(1, 2, Length + 1, 3), true);
+
+
         xlsx.Save(Server.MapPath(@"\Output\CRM_CompanyScaleStatisticsList.xlsx"));
         MsgLab.Text = "Excel檔案匯出成功";
+
+        Response.AddHeader("Content-Type", "application/octet-stream");
+        Response.AddHeader("Content-Transfer-Encoding", "Binary");
+        Response.AddHeader("Content-disposition", "attachment;  filename=\"CRM_CompanyScaleStatisticsList.xlsx\"");
+
+        Response.WriteFile(
+            HttpRuntime.AppDomainAppPath + @"Output\CRM_CompanyScaleStatisticsList.xlsx");
+
+        Response.End();
+
     }
 
 }

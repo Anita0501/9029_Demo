@@ -223,10 +223,27 @@ public class EWC_ActivityUtility
     //a.note
     public void Update(EWC_Activity a)
     {
-        EWC_DBHelper.RunTSQL("update EWC_Activity set Title=@title where ActivityID=@id",
+        EWC_DBHelper.RunTSQL("update EWC_Activity set Type=@type, Title=@title, Photo=@photo, ActivityDescription=@desc , ActiveDate=@ad , StartDate=@sd , EndDate=@ed , StartTime=@st , EndTime=@et , Location=@locat , ActivitySchedule=@sche , AllowSignUp=@as , StartSignUpDate=@ssd , EndSignUpDate=@esd , CompanyAmount=@ca , Charge=@charge , Bus=@bus , Note=@note where ActivityID=@id",
             new Dictionary<string, object> {
                 { "@id" , a.ActivityID } ,
-                { "@title" , a.Title }
+                { "@type" , a.Type } ,
+                { "@title" , a.Title },
+                { "@photo" , a.Photo },
+                { "@desc" , a.ActivityDescription } ,
+                { "@ad" , a.ActiveDate } ,
+                { "@sd" , a.StartDate } ,
+                { "@ed" , a.EndDate },
+                { "@st" , a.StartTime } ,
+                { "@et" , a.EndTime },
+                { "@locat" , a.Location },
+                { "@sche" , a.ActivitySchedule },
+                { "@as" , a.AllowSignUp },
+                { "@ssd" , a.StartSignUpDate },
+                { "@esd" , a.EndSignUpDate },
+                { "@ca" , a.CompanyAmount },
+                { "@charge" , a.Charge } ,
+                { "@bus" , a.Bus } ,
+                { "@note" , a.Note }
             });
     }
     public void Delete(string ID)

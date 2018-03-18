@@ -53,7 +53,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 form-control-label">借用人 :</label>
                                 <div class="col-sm-9">
-                                    <input id="idUserName" type="text" placeholder="名稱" runat="server" class="form-control form-control-success"><small class="form-text"></small>
+                                    <input id="idUserName" value=""  type="text" placeholder="名稱" runat="server" class="form-control form-control-success"><small class="form-text"></small>
                                 </div>
                             </div>
                             <%--欄位--%>
@@ -104,43 +104,22 @@
     <script src="Scripts/jquery-ui-1.12.1.js"></script>
     <script>
         $(function () {
+            $.datepicker.regional['zh-TW'] = {
+                dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+                dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
+                monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+                monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+                prevText: "上月",
+                nextText: "次月",
+                weekHeader: "週"
+            }
+            //將預設語系設定為中文
+            $.datepicker.setDefaults($.datepicker.regional["zh-TW"]);
             $("#MainContentPlaceHolder_idBorrowStartDate").datepicker({ dateFormat: "yy/mm/dd" });
         });
         $(function () {
             $("#MainContentPlaceHolder_idBorrowEndDate").datepicker({ dateFormat: "yy/mm/dd" });
         });
 
-        //date 兩個月
-        //$(function () {
-        //    var dateFormat = "yy/mm/dd",
-        //        from = $("#from")
-        //            .datepicker({
-        //                //defaultDate: "+1w",
-        //                changeMonth: true,
-        //                numberOfMonths: 3
-        //            })
-        //            .on("change", function () {
-        //                to.datepicker("option", "minDate", getDate(this));
-        //            }),
-        //        to = $("#to").datepicker({
-        //            defaultDate: "+1w",
-        //            changeMonth: true,
-        //            numberOfMonths: 3
-        //        })
-        //            .on("change", function () {
-        //                from.datepicker("option", "maxDate", getDate(this));
-        //            });
-
-        //    function getDate(element) {
-        //        var date;
-        //        try {
-        //            date = $.datepicker.parseDate(dateFormat, element.value);
-        //        } catch (error) {
-        //            date = null;
-        //        }
-
-        //        return date;
-        //    }
-        //});
     </script>
 </asp:Content>

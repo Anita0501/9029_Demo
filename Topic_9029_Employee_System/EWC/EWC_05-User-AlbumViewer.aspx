@@ -28,8 +28,11 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitleContentPlaceHolder" runat="Server">
+    福委會活動管理
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="SiteMapContentPlaceHolder" runat="Server">
+    <li class="breadcrumb-item">福委會活動管理</li>
+    <li class="breadcrumb-item active">活動相簿</li>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
     <div id="albumStart" class="row row-thumbnail-padding">
@@ -55,7 +58,7 @@
                         //var toPhotoViewPath ='EWC_09-User-PhotoViewer.aspx?Album=123456';
                         var albumtg = '<div class="col-md-3">' +
                             '<div class="img-thumbnail thumbnail-padding">' +
-                            '<a href="EWC_09-User-PhotoViewer.aspx?Album=' + qs + '">' +
+                            '<a href="EWC_09-User-PhotoViewer.aspx?Album=' + qs + '&admin='+ 0 +'">' +
                             //'<a href="'+ toPhotoViewPath +'">' +
                             '<img src="' + PhotoPath + '" style="width: 100%">' +
                             '<div class="caption">' +
@@ -73,23 +76,23 @@
                     });
 
 
-                    $(".AlbumEdit").on("click", function () {
-                        var abID = $(this).attr("alt");
-                        var abTitle = $(".aTitle").attr("alt");
-                        var abDesc = $(".aDesc").attr("alt");
+                    //$(".AlbumEdit").on("click", function () {
+                    //    var abID = $(this).attr("alt");
+                    //    var abTitle = $(".aTitle").attr("alt");
+                    //    var abDesc = $(".aDesc").attr("alt");
 
-                        Album = abID + "," + abTitle + "," + abDesc;
-                        location.href = "EWC_10-Manager-EditAlbum.aspx?Album=" + Album;
-                    });
+                    //    Album = abID + "," + abTitle + "," + abDesc;
+                    //    location.href = "EWC_10-Manager-EditAlbum.aspx?Album=" + Album + "&admin=" + 0;
+                    //});
 
-                    $(".AlbumDelete").on("click", function () {
-                        var abID = $(this).attr("alt");
-                        var abTitle = $(".aTitle").attr("alt");
-                        var abDesc = $(".aDesc").attr("alt");
+                    //$(".AlbumDelete").on("click", function () {
+                    //    var abID = $(this).attr("alt");
+                    //    var abTitle = $(".aTitle").attr("alt");
+                    //    var abDesc = $(".aDesc").attr("alt");
 
-                        Album = abID + "," + abTitle + "," + abDesc;
-                        location.href = "EWC_11-Manager-DeleteAlbum.aspx?Album=" + Album;
-                    });
+                    //    Album = abID + "," + abTitle + "," + abDesc;
+                    //    location.href = "EWC_11-Manager-DeleteAlbum.aspx?Album=" + Album;
+                    //});
                 }
             });
 

@@ -8,8 +8,8 @@
         Employee testLoginUser = Employee.LoginUser();
         Session["EmployeeInfo"] = testLoginUser;
         Employee E = Employee.LoginUser();
-        EmployeeID_hidden.Value = E.EmployeeID;
-        EmployeeName_hidden.Value = E.EmployeeName;
+        //EmployeeID_hidden.Value = E.EmployeeID;
+        //EmployeeName_hidden.Value = E.EmployeeName;
 
         //page_load進來就取員工報名的活動清單
         EWC_SignUpUtility su = new EWC_SignUpUtility();
@@ -28,7 +28,8 @@
 
             SignUpAtvID_hidden.Value = atv;
         }
-
+        EmployeeID_hidden.Value = E.EmployeeID;
+        EmployeeName_hidden.Value = E.EmployeeName;
     }
 </script>
 
@@ -55,10 +56,10 @@
     <!-- Modernizr -->
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitleContentPlaceHolder" runat="Server">
-    福委會管理
+    福委會活動管理
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="SiteMapContentPlaceHolder" runat="Server">
-    <li class="breadcrumb-item">福委會管理</li>
+    <li class="breadcrumb-item">福委會活動管理</li>
     <li class="breadcrumb-item active">活動列表</li>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">

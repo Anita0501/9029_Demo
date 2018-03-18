@@ -9,27 +9,30 @@ public partial class BusinessSchedule : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Employee emp = Employee.LoginUser();
+        Session["EmployeeInfo"] = emp;
+        EmployeeIDTextBox.Text = emp.EmployeeID;
+        EmployeeNameTextBox.Text = emp.EmployeeName;
     }
 
     protected void Demobtn_Click(object sender, EventArgs e)
     {
         //TripIDTextBox.Text = "";
-        CompanyIDTextBox.Text = "53212539";
-        CompanyNameTextBox.Text = "";
-        EmployeeIDTextBox.Text = "A1088";
-        EmployeeNameTextBox.Text = "林小牙";
-        TripThemeTextBox.Text = "新產品Demo";
-        TargetDateTextBox.Text = "";
-        MemoTextBox.Text = "出發前再次電聯客戶確認到訪時間是否方便拜訪";
+        //CompanyIDTextBox.Text = "30986336";
+        //CompanyNameTextBox.Text = "";
+        //EmployeeIDTextBox.Text = "A1001";
+        //EmployeeNameTextBox.Text = "陳月娥";
+        TripThemeTextBox.Text = "簽訂合約";
+        //TargetDateTextBox.Text = "";
+        MemoTextBox.Text = "先與業務部主管確認合約內容與金額正確與否";
     }
     protected void CancelBtn_Click(object sender, EventArgs e)
     {
         //TripIDTextBox.Text = "";
         CompanyIDTextBox.Text = "";
         CompanyNameTextBox.Text = "";
-        EmployeeIDTextBox.Text = "";
-        EmployeeNameTextBox.Text = "";
+        //EmployeeIDTextBox.Text = "";
+        //EmployeeNameTextBox.Text = "";
         TripThemeTextBox.Text = "";
         TargetDateTextBox.Text = "";
         MemoTextBox.Text = "";

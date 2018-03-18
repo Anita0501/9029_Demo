@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="CSSContentPlaceHolder" runat="Server">
     <%--<link href="Content/sweetalert2.min.css" rel="stylesheet" />--%>
+    <link href="/Content/MasterStyleSheet.css" rel="stylesheet" />
     <link href="Content/OnepointStyleSheet.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitleContentPlaceHolder" runat="Server">

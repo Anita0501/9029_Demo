@@ -29,7 +29,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         string str = empInfo.EmployeeID + "," + empInfo.EmployeeName + ","
             + empInfo.JobTitle + "," + changePassword;
 
-        string url = ConfigurationManager.AppSettings["LoginPage"];
+        string url = "/" + ConfigurationManager.AppSettings["LoginPage"];
         EmployeeHiddenField.Value = str;
         urlHiddenField.Value = url;
     }

@@ -78,6 +78,7 @@
         {
             RBValue2 = "0";
         }
+        AtvTitle.Text = AtvTitleBox.Text;
 
         EWC_Activity a = new EWC_Activity()
         {
@@ -103,7 +104,7 @@
         };
 
         EWC_ActivityUtility au = new EWC_ActivityUtility();
-        au.Insert(a);
+        au.Update(a);
 
         HiddenField1.Value = "1";
 
@@ -113,10 +114,10 @@
     protected void Page_Load(object sender, EventArgs e)
     {
         //測試資料
-        string qs = "18S971";
+        //string qs = "18S971";
 
         //正式
-        //string qs = Request.QueryString["ActivityID"];
+        string qs = Request.QueryString["ActivityID"];
 
         List<EWC_Activity> alist = new List<EWC_Activity>();
         EWC_Activity atv = new EWC_Activity();
@@ -128,10 +129,107 @@
         //    //用atvID查單一活動資訊, 要塞回去各欄位
         //    atv.Add(item);
         //}
+        if (!IsPostBack )
+        {
 
-        AtvID_LB.Text = qs;
-        AtvTypeDDL.SelectedIndex = Convert.ToInt32(atv.Type)+1;
-        AtvTitleBox.Text = atv.Title;
+            //編號
+            AtvID_LB.Text = qs;
+
+            //類型
+            AtvTypeDDL.SelectedIndex = Convert.ToInt32(atv.Type) + 1;
+
+            //名稱
+            AtvTitleBox.Text = atv.Title;
+
+            //開放報名
+            if (atv.AllowSignUp == "1")
+            {
+                SignUpRB_1.Checked = true;
+                signup.Value = "1";
+            }
+            else
+                SignUpRB_0.Checked = true;
+            signup.Value = "0";
+
+            //報名期限
+            SignUpSD.Text = atv.StartSignUpDate;
+            SignUpED.Text = atv.EndSignUpDate;
+            
+            //生效日期
+            ActiveDateBox.Text = atv.ActiveDate;
+
+            //天數
+            if (atv.EndDate == "")
+            {
+                AtvDaysRB_0.Checked = true;
+                atvdays.Value = "0";
+            }
+            else
+                AtvDaysRB_1.Checked = true;
+            atvdays.Value = "1";
+
+            //單日顯示開始日期
+            if (AtvDaysRB_0.Checked == true && atv.StartDate != "")
+            {
+                AtvSDate.Text = atv.StartDate;
+            }
+            else
+                AtvSDate.Text = atv.StartDate;
+
+            //多日顯示結束日期
+            if (AtvDaysRB_1.Checked == true && atv.EndDate != "")
+            {
+                AtvEDate.Text = atv.EndDate;
+            }
+            else
+                AtvEDate.Text = atv.EndDate;
+
+            //AtvSDate
+
+            //時間
+            startTime.Value = atv.StartTime;
+            endTime.Value = atv.EndTime;
+
+            //地點
+            AtvlocatBox.Text = atv.Location;
+
+            //目的
+            AtvDescBox.Text = atv.ActivityDescription;
+
+            //活動圖片
+            if (atv.Photo != "")
+            {
+                photoImg.Value = atv.Photo;
+            }
+            else
+            {
+                photoImg.Value = "0";
+            }
+
+            //流程圖片
+            if (atv.ActivitySchedule != "")
+            {
+                scheduleImg.Value = atv.ActivitySchedule;
+            }
+            else
+            {
+                scheduleImg.Value = "0";
+            }
+
+            //攜伴人數
+            CompanyAmtDDL.SelectedIndex = Convert.ToInt32(atv.CompanyAmount);
+
+            //交通車
+            if (atv.Bus == "1")
+            {
+                AtvBusRB_1.Checked = true;
+            }
+            else
+                AtvBusRB_0.Checked = true;
+
+            //備註
+            AtvNoteBox.Text = atv.Note;
+        }
 
     }
 </script>
@@ -142,10 +240,10 @@
     <link href="css/Atv_btn.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitleContentPlaceHolder" runat="Server">
-    福委會管理
+    福委會活動管理
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="SiteMapContentPlaceHolder" runat="Server">
-    <li class="breadcrumb-item">福委會管理</li>
+    <li class="breadcrumb-item">福委會活動管理</li>
     <li class="breadcrumb-item active">編輯活動</li>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
@@ -162,7 +260,7 @@
                             <div class="form-group row">
                                 <asp:Label ID="AtvID" CssClass="col-sm-2 form-control-label" runat="server" Text="活動編號:"></asp:Label>
                                 <div class="col-sm-9">
-                                     <asp:Label ID="AtvID_LB" CssClass="col-sm-5 form-control-label" Style="text-align: left"  runat="server"></asp:Label>
+                                    <asp:Label ID="AtvID_LB" CssClass="col-sm-5 form-control-label" Style="text-align: left" runat="server"></asp:Label>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -230,7 +328,7 @@
                                 <div class="col-sm-8">
                                     <asp:TextBox ID="AtvSTime" CssClass="Time form-control col-sm-4 unblock" runat="server"></asp:TextBox>
                                     <span id="QQ2">~</span>
-                                    <asp:TextBox ID="AtvETime" CssClass="Time form-control col-sm-4 unblock" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="AtvETime" CssClass="Time2 form-control col-sm-4 unblock" runat="server"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -251,11 +349,15 @@
                                     <asp:FileUpload ID="AtvImgFileUpload" CssClass="form-control" runat="server" />
                                 </div>
                             </div>
+                            <div class="form-group row" id="phototag">
+                            </div>
                             <div class="form-group row">
                                 <asp:Label ID="AtvInfo" class="col-sm-2 form-control-label" runat="server" Text="活動流程:" AssociatedControlID="AtvInfoFileUpload"></asp:Label>
                                 <div class="col-sm-9">
                                     <asp:FileUpload ID="AtvInfoFileUpload" CssClass="form-control" runat="server" />
                                 </div>
+                            </div>
+                            <div class="form-group row" id="scheduletag">
                             </div>
                             <div class="form-group row">
                                 <asp:Label ID="CompanyAmt" CssClass="col-sm-2 form-control-label" runat="server" Text="可攜人數:" AssociatedControlID="CompanyAmtDDL"></asp:Label>
@@ -293,11 +395,20 @@
                             <div class="form-group row">
                                 <div class="col-sm-8 offset-sm-2">
                                     <asp:Button ID="Save" CssClass="btn btn-primary btn-sm" Style="width: 200px; margin-right: 30px" runat="server" Text="儲  存" OnClick="Save_Click" />
-                                    <asp:Button ID="Clear" CssClass="btn btn-secondary btn-sm" Style="width: 200px; margin-right: 30px" runat="server" Text="取  消" />
+                                    <%--<asp:Button ID="Cancel" CssClass="btn btn-secondary btn-sm" Style="width: 200px; margin-right: 30px" runat="server" Text="取  消" />--%>
+                                    <input id="Cancel" class="btn btn-secondary btn-sm" style="width: 200px; margin-right: 30px" type="button" value="取  消"/>
                                     <asp:Button ID="TestDataBtn" CssClass="btn btn-secondary btn-sm" Style="width: 120px;" runat="server" OnClick="TestDataBtn_Click" Text="測試資料" />
+                                
+
                                 </div>
                             </div>
                             <asp:HiddenField ID="HiddenField1" runat="server" Value="0" />
+                            <asp:HiddenField ID="startTime" runat="server" Value="0" />
+                            <asp:HiddenField ID="endTime" runat="server" Value="0" />
+                            <asp:HiddenField ID="photoImg" runat="server" Value="0" />
+                            <asp:HiddenField ID="scheduleImg" runat="server" Value="0" />
+                            <asp:HiddenField ID="signup" runat="server" Value="0" />
+                            <asp:HiddenField ID="atvdays" runat="server" Value="0" />
                         </div>
                     </div>
                 </div>
@@ -310,13 +421,25 @@
 
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="JavaScriptContentPlaceHolder" runat="Server">
-<%--移到masterPage<script src="Scripts/jquery-ui-1.12.1.min.js"></script>
+    <%--移到masterPage<script src="Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="Scripts/jquery.timepicker.min.js"></script>--%>
     <script src="js/jquery.timepicker.min.js"></script>
     <script>
         $(function () {
+            $.datepicker.regional['zh-TW'] = {
+                dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+                dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
+                monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+                monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+                prevText: "上月",
+                nextText: "次月",
+                weekHeader: "週"
+            };
+            //將預設語系設定為中文
+            $.datepicker.setDefaults($.datepicker.regional["zh-TW"]);
+
             //隱藏報名日期和生效日期
-            $('#SignUpFeild').hide();
+            $('#SignUpFeild').show();
             $('#AtcDate').hide();
 
             //開放報名SignUpRB_1(是)為checked就show,否則就hide
@@ -366,13 +489,29 @@
                 dateFormat: 'yy-mm-dd'
             });
 
+            var startTime = $("#MainContentPlaceHolder_startTime").val();
+            var endTime = $("#MainContentPlaceHolder_endTime").val();
+
             //活動時間 start time
             $(".Time").timepicker({
                 timeFormat: 'h:mm p',
                 interval: 30,
                 minTime: '12:00am',
                 maxTime: '11:30pm',
-                defaultTime: '11',
+                defaultTime: startTime,
+                startTime: '09:00',
+                dynamic: false,
+                dropdown: true,
+                scrollbar: true
+
+            });
+
+            $(".Time2").timepicker({
+                timeFormat: 'h:mm p',
+                interval: 30,
+                minTime: '12:00am',
+                maxTime: '11:30pm',
+                defaultTime: endTime,
                 startTime: '09:00',
                 dynamic: false,
                 dropdown: true,
@@ -390,14 +529,69 @@
             if ($("#MainContentPlaceHolder_HiddenField1").val() == 1) {
                 swal({
                     title: '完成',
-                    text: '活動新增成功 ! ',
+                    text: '活動修改成功 ! ',
                     type: 'success',
                 }).then(
                     function () {
                         location.href = "EWC_07-Manager-ActivityListEdit.aspx";
                     });
             };
+
+
+            $("#Cancel").click(function () {
+                //swal({
+                //    title: '完成',
+                //    text: '活動新增成功 ! ',
+                //    type: 'success',
+                //}).then(
+                //    function () {
+                location.href = "EWC_07-Manager-ActivityListEdit.aspx";
+                //});
+            });
+
+
+            if ($("#MainContentPlaceHolder_photoImg").val() != "0") {
+                var PhotoPath = $("#MainContentPlaceHolder_photoImg").val().substring(6);
+
+                //var divtag = $('<div>').
+                //    attr("class", "col-sm-offset-3 col-sm-9");
+                var emptytag = $('<label>').
+                    attr("class", "col-sm-2 form-control-label");
+
+                var imgtag = $('<img>').
+                    attr("src", PhotoPath).
+                    attr("style", "width:300px; height:200px;margin-left:15px;");
+
+                $("#phototag").append(emptytag).append(imgtag);
+            }
+
+
+            if ($("#MainContentPlaceHolder_scheduleImg").val() != "0") {
+                var PhotoPath = $("#MainContentPlaceHolder_scheduleImg").val().substring(6);
+
+                var emptytag = $('<label>').
+                    attr("class", "col-sm-2 form-control-label");
+
+                var imgtag = $('<img>').
+                    attr("src", PhotoPath).
+                    attr("style", "width:300px; height:200px;margin-left:15px;");
+
+                $("#scheduletag").append(emptytag).append(imgtag);
+            }
         });
+
+        //顯示連動box
+        //var signup = $("#MainContentPlaceHolder_signup").val();
+        //var atvdays = $("#MainContentPlaceHolder_atvdays").val();
+
+        //if (signup == "1") {
+        //    $('#SignUpFeild').show();
+        //    $('#AtcDate').hide();
+        //} else {
+        //    $('#SignUpFeild').hide();
+        //    $('#AtcDate').show();
+        //}
+
 
 
     </script>

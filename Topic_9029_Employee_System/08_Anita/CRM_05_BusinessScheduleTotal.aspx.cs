@@ -1,5 +1,7 @@
-﻿using System;
+﻿using GemBox.Spreadsheet;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -32,4 +34,49 @@ public partial class _03_Sel_Del_Customer : System.Web.UI.Page
         CRM_BusinessScheduleUtility ru = new CRM_BusinessScheduleUtility();
         ru.Update(r);
     }
+
+    protected void ExcelBtn_Click(object sender, EventArgs e)
+    {
+        DataTable dt = DBHelper.GetDataTable("select * from CRM_BusinessSchedule", null);
+        SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
+        ExcelFile xlsx = new ExcelFile();
+        ExcelWorksheet mySheet = xlsx.Worksheets.Add("BusinessSchedules");
+        mySheet.Cells[1, 2].Value = "行程單號";
+        mySheet.Cells[1, 2].Style.FillPattern.SetSolid(SpreadsheetColor.FromName(ColorName.LightBlue));
+        mySheet.Cells[1, 3].Value = "統編";
+        mySheet.Cells[1, 3].Style.FillPattern.SetSolid(SpreadsheetColor.FromName(ColorName.LightBlue));
+        mySheet.Cells[1, 4].Value = "公司名稱";
+        mySheet.Cells[1, 4].Style.FillPattern.SetSolid(SpreadsheetColor.FromName(ColorName.LightBlue));
+        mySheet.Cells[1, 5].Value = "員工編號";
+        mySheet.Cells[1, 5].Style.FillPattern.SetSolid(SpreadsheetColor.FromName(ColorName.LightBlue));
+        mySheet.Cells[1, 6].Value = "員工名稱";
+        mySheet.Cells[1, 6].Style.FillPattern.SetSolid(SpreadsheetColor.FromName(ColorName.LightBlue));
+        mySheet.Cells[1, 7].Value = "行程主題";
+        mySheet.Cells[1, 7].Style.FillPattern.SetSolid(SpreadsheetColor.FromName(ColorName.LightBlue));
+        mySheet.Cells[1, 8].Value = "預約日期";
+        mySheet.Cells[1, 8].Style.FillPattern.SetSolid(SpreadsheetColor.FromName(ColorName.LightBlue));
+        mySheet.Cells[1, 9].Value = "備註欄";
+        mySheet.Cells[1, 9].Style.FillPattern.SetSolid(SpreadsheetColor.FromName(ColorName.LightBlue));
+
+        mySheet.InsertDataTable(dt,
+           new InsertDataTableOptions()
+           {
+               StartColumn = 2,
+               StartRow = 2,
+           });
+        xlsx.Save(Server.MapPath(@"~\Output\CRM_BusinessSchedulesList.xlsx"));
+        MsgLab.Text = "Excel檔案匯出成功";
+
+        Response.AddHeader("Content-Type", "application/octet-stream");
+        Response.AddHeader("Content-Transfer-Encoding", "Binary");
+        Response.AddHeader("Content-disposition", "attachment;  filename=\"CRM_BusinessSchedulesList.xlsx\"");
+
+        Response.WriteFile(
+            HttpRuntime.AppDomainAppPath + @"Output\CRM_BusinessSchedulesList.xlsx");
+
+        Response.End();
+
+
+    }
+
 }

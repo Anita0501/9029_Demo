@@ -11,7 +11,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="SiteMapContentPlaceHolder" runat="Server">
     <%--SITE MAP 範例--%>
     <li class="breadcrumb-item">資產器材租借管理</li>
-    <li class="breadcrumb-item active">借取資訊</li>
+    <li class="breadcrumb-item active">器材歸還</li>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
     <%--寫你們的全部的東西<br />--%>
@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                                 <div class="card-header d-flex align-items-center">
-                                    <h3 class="h4">Striped table with hover effect</h3>
+                                    <h3 class="h4">器材歸還</h3>
                                 </div>
                                 <div class="card-body">
                                     <table class="table table-striped table-hover" id="itemPlaceholderContainer" runat="server">

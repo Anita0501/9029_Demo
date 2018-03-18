@@ -11,10 +11,10 @@ public partial class Register : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Employee emp = Employee.LoginUser();
-        if (emp.RoleID != 1 && emp.RoleID != 2)
-        {
-            Response.Redirect("~/" + ConfigurationManager.AppSettings["NoPermissions"]);
-        }
+        //if (emp.RoleID != 1 && emp.RoleID != 2)
+        //{
+        //    Response.Redirect("~/" + ConfigurationManager.AppSettings["NoPermissions"]);
+        //}
         if (!Page.IsPostBack)
         {
             BusinessLogic bl = new BusinessLogic();

@@ -11,7 +11,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="SiteMapContentPlaceHolder" runat="Server">
     <%--SITE MAP 範例--%>
     <li class="breadcrumb-item">資產器材租借管理</li>
-    <li class="breadcrumb-item active">借取資訊</li>
+    <li class="breadcrumb-item active">器材管理</li>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
     <%--寫你們的全部的東西<br />--%>
@@ -31,7 +31,10 @@
                 <th scope="row"><%# Eval("EquipmentID") %></th>
                 <td><%# Eval("EquipmentName") %></td>
                 <td><%# Eval("EquipmentAmount") %></td>
-                <td><%# Eval("SortID") %></td>
+                <td><%# Eval("StrSortID") %></td>
+                <td><%# Eval("PurchaseDate") %></td>
+                <td><%# Eval("UseLife") %></td>
+
                 <td>
                     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# Eval("EquipmentID","~/03_Ed/04_edit2.aspx?id={0}") %>'>
                         <asp:Image ID="Image1" ImageUrl="~/img/testIcon.png" AlternateText="" Width="20px" Height="15px" BorderWidth="0" runat="server" />
@@ -113,7 +116,7 @@
                                     </div>
                                 </div>
                                 <div class="card-header d-flex align-items-center">
-                                    <h3 class="h4">Striped table with hover effect</h3>
+                                    <h3 class="h4">器材管理</h3>
                                 </div>
                                 <div class="card-body">
                                     <table class="table table-striped table-hover" id="itemPlaceholderContainer" runat="server">
@@ -125,6 +128,8 @@
                                                 <th>器材名稱</th>
                                                 <th>器材數量</th>
                                                 <th>類別</th>
+                                                <th>購買日期</th>
+                                                <th>預期使用週期</th>
                                                 <th>編輯</th>
                                                 <th>刪除</th>
                                                 <%--<th>剩餘數量</th>--%>

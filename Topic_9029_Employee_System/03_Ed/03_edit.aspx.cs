@@ -16,8 +16,13 @@ public partial class Demo : System.Web.UI.Page
     {
         using (var conn = new SqlConnection(dblink))
         {
-            SqlDataAdapter da = new SqlDataAdapter(
-                "select * from Equipment ", conn);
+            SqlDataAdapter da = new SqlDataAdapter("select * , case SortID " +
+                "when '1' then N'3C產品' " +
+                "when '2' then N'周邊器材' " +
+                "when '3' then N'五金工具' " +
+                "when '4' then N'活動設備' end as StrSortID " +
+                "from Equipment ", conn);
+
             //da.SelectCommand.Parameters.AddWithValue("checkValue", 1);//@checkValue 需要再加上這行給值
             conn.Open();
             DataTable dt = new DataTable();
@@ -33,8 +38,14 @@ public partial class Demo : System.Web.UI.Page
 
         using (var conn = new SqlConnection(dblink))
         {
-            SqlDataAdapter da = new SqlDataAdapter(
-                "select EquipmentID,SortID,EquipmentName,EquipmentAmount, Audit from Equipment where SortID =@checkValue", conn);
+            SqlDataAdapter da = new SqlDataAdapter("select * , case SortID " +
+                "when '1' then N'3C產品' " +
+                "when '2' then N'周邊器材' " +
+                "when '3' then N'五金工具' " +
+                "when '4' then N'活動設備' end as StrSortID " +
+                "from Equipment " +
+                "where SortID =@checkValue", conn);
+                //"select EquipmentID,SortID,EquipmentName,EquipmentAmount, Audit from Equipment where SortID =@checkValue", conn);
 
             da.SelectCommand.Parameters.AddWithValue("checkValue", checkValue);//@checkValue 需要再加上這行給值
             conn.Open();

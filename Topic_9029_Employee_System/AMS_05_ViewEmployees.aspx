@@ -6,6 +6,7 @@
     <link href="Content/sweetalert2.min.css" rel="stylesheet" />
     <%--    <link href="Content/side-team-member-bio-style.css" rel="stylesheet" />
     <link href="Content/side-team-member-bio-reset.css" rel="stylesheet" />--%>
+    <link href="/Content/MasterStyleSheet.css" rel="stylesheet" />
     <link href="Content/OnepointStyleSheet.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitleContentPlaceHolder" runat="Server">
@@ -48,8 +49,8 @@
                                     <td>
                                         <asp:TextBox Text='<%# Bind("Email") %>' runat="server" ID="EmailTextBox" /></td>
                                     <td>
-                                        <asp:Button runat="server" CommandName="Update" Text="Update" ID="UpdateButton" CssClass="btn btn-sm" OnClick="UpdateButton_Click" />
-                                        <asp:Button runat="server" CommandName="Cancel" Text="Cancel" ID="CancelButton" CssClass="btn btn-sm" OnClick="CancelButton_Click" />
+                                        <asp:Button runat="server" CommandName="Update" Text="更新" ID="UpdateButton" CssClass="btn btn-sm" OnClick="UpdateButton_Click" />
+                                        <asp:Button runat="server" CommandName="Cancel" Text="取消" ID="CancelButton" CssClass="btn btn-sm" OnClick="CancelButton_Click" />
                                     </td>
                                 </tr>
                             </EditItemTemplate>
@@ -75,8 +76,8 @@
                                         <asp:Label Text='<%# Eval("Email") %>' runat="server" ID="EmailLabel" /></td>
                                     <td>
 
-                                        <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" CssClass="btn btn-sm" OnClick="EditButton_Click" />
-                                        <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" CssClass="btn btn-sm" />
+                                        <asp:Button runat="server" CommandName="Edit" Text="編輯" ID="EditButton" CssClass="btn btn-sm" OnClick="EditButton_Click" />
+                                        <asp:Button runat="server" CommandName="Delete" Text="刪除" ID="DeleteButton" CssClass="btn btn-sm" />
                                     </td>
                                 </tr>
                             </ItemTemplate>
@@ -85,14 +86,14 @@
                                     <table runat="server" id="itemPlaceholderContainer" class="table table-striped table-hover col-12">
                                         <tr runat="server">
 
-                                            <th runat="server">EmployeeID</th>
-                                            <th runat="server">Name</th>
-                                            <th runat="server">JobTitle</th>
-                                            <th runat="server">RoleID</th>
-                                            <th runat="server">DepartmentID</th>
-                                            <th runat="server">DutyDate</th>
-                                            <th runat="server">Ext</th>
-                                            <th runat="server">Email</th>
+                                            <th runat="server">員工編號</th>
+                                            <th runat="server">姓名</th>
+                                            <th runat="server">職稱</th>
+                                            <th runat="server">角色</th>
+                                            <th runat="server">部門</th>
+                                            <th runat="server">到職日期</th>
+                                            <th runat="server">分機</th>
+                                            <th runat="server">信箱</th>
                                             <th runat="server"></th>
                                         </tr>
                                         <tr runat="server" id="itemPlaceholder"></tr>
@@ -113,8 +114,8 @@
                             <SelectedItemTemplate>
                                 <tr>
                                     <td>
-                                        <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" CssClass="btn btn-sm" OnClick="DeleteButton_Click" />
-                                        <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" CssClass="btn btn-sm" />
+                                        <asp:Button runat="server" CommandName="Delete" Text="刪除" ID="DeleteButton" CssClass="btn btn-sm" OnClick="DeleteButton_Click" />
+                                        <asp:Button runat="server" CommandName="Edit" Text="編輯" ID="EditButton" CssClass="btn btn-sm" />
                                     </td>
                                     <td>
                                         <asp:Label Text='<%# Eval("EmployeeID") %>' runat="server" ID="EmployeeIDLabel" /></td>
@@ -142,7 +143,7 @@
     </section>
 
 
-    <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:employeesDatabase %>' DeleteCommand="DELETE FROM [AMS_Employee] WHERE [EmployeeID] = @EmployeeID" InsertCommand="INSERT INTO [AMS_Employee] ([EmployeeID], [Name], [JobTitle], [RoleID], [DepartmentID], [DutyDate], [Ext], [Email]) VALUES (@EmployeeID, @Name, @JobTitle, @RoleID, @DepartmentID, @DutyDate, @Ext, @Email)" SelectCommand="SELECT [EmployeeID], [Name], [JobTitle], r.RoleName, d.departmentName, [DutyDate], [Ext], [Email]  FROM [AMS_Employee] as e join [AMS_Department] as d on e.DepartmentID = d.departmentId join [AMS_Role] as r on e.RoleID = r.RoleId" UpdateCommand="UPDATE [AMS_Employee] SET [Name] = @Name, [JobTitle] = @JobTitle, [DutyDate] = @DutyDate, [Ext] = @Ext, [Email] = @Email WHERE [EmployeeID] = @EmployeeID">
+    <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:employeesDatabase %>' DeleteCommand="DELETE FROM [AMS_Employee] WHERE [EmployeeID] = @EmployeeID; DELETE FROM [AMS_EmployeePermission] WHERE [EmployeeID] = @EmployeeID;DELETE FROM [SEP_Friend] WHERE [EmployeeID] = @EmployeeID;DELETE FROM [SEP_Friend] WHERE [friends] = @EmployeeID;DELETE FROM [SEP_Article] WHERE [EmployeeID] = @EmployeeID;DELETE FROM [SEP_inviteFriend] WHERE [InviterId] = @EmployeeID;DELETE FROM [SEP_inviteFriend] WHERE [Invited] = @EmployeeID;" InsertCommand="INSERT INTO [AMS_Employee] ([EmployeeID], [Name], [JobTitle], [RoleID], [DepartmentID], [DutyDate], [Ext], [Email]) VALUES (@EmployeeID, @Name, @JobTitle, @RoleID, @DepartmentID, @DutyDate, @Ext, @Email)" SelectCommand="SELECT [EmployeeID], [Name], [JobTitle], r.RoleName, d.departmentName, [DutyDate], [Ext], [Email]  FROM [AMS_Employee] as e join [AMS_Department] as d on e.DepartmentID = d.departmentId join [AMS_Role] as r on e.RoleID = r.RoleId" UpdateCommand="UPDATE [AMS_Employee] SET [Name] = @Name, [JobTitle] = @JobTitle, [DutyDate] = @DutyDate, [Ext] = @Ext, [Email] = @Email WHERE [EmployeeID] = @EmployeeID">
         <DeleteParameters>
             <asp:Parameter Name="EmployeeID" Type="String"></asp:Parameter>
         </DeleteParameters>

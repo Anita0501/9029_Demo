@@ -4,6 +4,7 @@
     <link href="Content/jsgrid.min.css" rel="stylesheet" />
     <link href="Content/jsgrid-theme.min.css" rel="stylesheet" />
     <link href="Content/sweetalert2.min.css" rel="stylesheet" />
+    <link href="/Content/MasterStyleSheet.css" rel="stylesheet" />
     <link href="Content/OnepointStyleSheet.css" rel="stylesheet" />
 
 </asp:Content>

@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AMS_08_ResetEmployeePassword.aspx.cs" Inherits="AMS_08_ResetEmployeePassword" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="CSSContentPlaceHolder" runat="Server">
+    <link href="/Content/MasterStyleSheet.css" rel="stylesheet" />
     <link href="Content/OnepointStyleSheet.css" rel="stylesheet" />
     <link href="Content/sweetalert2.min.css" rel="stylesheet" />
 </asp:Content>

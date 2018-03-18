@@ -65,7 +65,6 @@ public class DatabaseTier
             { "@StartDate", emp.StartDate},
             { "@EndDate", emp.EndDate }
         });
-
     }
     //修改員工資料到DB
     public void UpdateEmployee(Employee emp)

@@ -82,7 +82,7 @@
 
                 //上傳到server
                 uploadedPhoto.SaveAs(HttpContext.Current.Server.MapPath(uploadPath_albumPhoto));
-                Label1.Text += String.Format("{0}<br />", uploadedPhoto.FileName);
+                //Label1.Text += String.Format("{0}<br />", uploadedPhoto.FileName);
 
                 //寫進Photo資料表
                 EWC_Photo pt = new EWC_Photo()
@@ -123,10 +123,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="CSSContentPlaceHolder" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitleContentPlaceHolder" runat="Server">
-    福委會管理
+    福委會活動管理
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="SiteMapContentPlaceHolder" runat="Server">
-    <li class="breadcrumb-item">福委會管理</li>
+    <li class="breadcrumb-item">福委會活動管理</li>
     <li class="breadcrumb-item active">上傳照片</li>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
@@ -167,7 +167,7 @@
                                     <asp:Button ID="Upload_BTN" CssClass="btn btn-secondary btn-sm" Style="width: 120px;" runat="server" Text="開始上傳" OnClick="Upload_BTN_Click1" />
                                 </div>
                             </div>
-                            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                            <%--<asp:Label ID="Label1" runat="server" Text=""></asp:Label>--%>
                             <asp:HiddenField ID="is_selected_photo" runat="server" />
                             <asp:HiddenField ID="is_enter_album_info" runat="server" />
                         </div>

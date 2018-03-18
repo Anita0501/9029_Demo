@@ -5,7 +5,10 @@
     <link href="Content/nice-select.css" rel="stylesheet" />
     <link href="Content/datedropper.min.css" rel="stylesheet" />
     <link href="Content/font-awesome.css" rel="stylesheet" />
+    <link href="/Content/MasterStyleSheet.css" rel="stylesheet" />
     <link href="Content/OnepointStyleSheet.css" rel="stylesheet" />
+
+
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContentPlaceHolder" runat="Server">
@@ -170,9 +173,9 @@
 
             $("#DemoButton").click(function () {
                 $("#MainContentPlaceHolder_EmpIDTextBox").val("N1130");
-                $("#MainContentPlaceHolder_EmpNameTextBox").val("林怡君");
+                $("#MainContentPlaceHolder_EmpNameTextBox").val("林椅君");
                 $("#MainContentPlaceHolder_JobTitleTextBox").val("企劃專員");
-                $("#MainContentPlaceHolder_ExtTextBox").val("116");
+                $("#MainContentPlaceHolder_ExtTextBox").val("#116");
                 $("#MainContentPlaceHolder_CellphoneTextBox").val("0928081255");
                 $("#MainContentPlaceHolder_AddressTextBox").val("台北市中山區民生東路三段75號");
                 $("#MainContentPlaceHolder_EmailTextBox").val("PigIsBest@gmail.com");

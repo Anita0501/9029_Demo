@@ -28,8 +28,11 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitleContentPlaceHolder" runat="Server">
+    福委會活動管理
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="SiteMapContentPlaceHolder" runat="Server">
+     <li class="breadcrumb-item">福委會活動管理</li>
+    <li class="breadcrumb-item active">活動相簿</li>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
     <div id="albumStart" class="row row-thumbnail-padding">
@@ -68,7 +71,7 @@
                         //var toPhotoViewPath ='EWC_09-User-PhotoViewer.aspx?Album=123456';
                         var albumtg = '<div class="col-md-3">' +
                             '<div class="img-thumbnail thumbnail-padding">' +
-                            '<a href="EWC_09-User-PhotoViewer.aspx?Album=' + qs + '">' +
+                            '<a href="EWC_09-User-PhotoViewer.aspx?Album=' + qs + '&admin='+ 1 +'">' +
                             //'<a href="'+ toPhotoViewPath +'">' +
                             '<img src="' + PhotoPath + '" style="width: 100%">' +
                             '<div class="caption">' +
@@ -88,20 +91,20 @@
 
                     $(".AlbumEdit").on("click", function () {
                         var abID = $(this).attr("alt");
-                        var abTitle = $(".aTitle").attr("alt");
-                        var abDesc = $(".aDesc").attr("alt");
+                        var abTitle = $(this).parent().find(".aTitle").attr("alt"); //this是這個btn, 往上找.parent()父標籤,再往下找.find()這個父標籤裡面的.("aTitle")title標籤,再找他的alt
+                        var abDesc = $(this).parent().find(".aDesc").attr("alt");
 
                         Album = abID + "," + abTitle + "," + abDesc;
-                        location.href = "EWC_10-Manager-EditAlbum.aspx?Album=" + Album;
+                        location.href = "EWC_10-Manager-EditAlbum.aspx?Album=" + Album +"&admin="+1;
                     });
 
                     $(".AlbumDelete").on("click", function () {
                         var abID = $(this).attr("alt");
-                        var abTitle = $(".aTitle").attr("alt");
-                        var abDesc = $(".aDesc").attr("alt");
+                        var abTitle = $(this).parent().find(".aTitle").attr("alt"); //this是這個btn, 往上找.parent()父標籤,再往下找.find()這個父標籤裡面的.("aTitle")title標籤,再找他的alt
+                        var abDesc = $(this).parent().find(".aDesc").attr("alt");
 
                         Album = abID + "," + abTitle + "," + abDesc;
-                        location.href = "EWC_11-Manager-DeleteAlbum.aspx?Album=" + Album;
+                        location.href = "EWC_11-Manager-DeleteAlbum.aspx?Album=" + Album + "&admin=" + 1;
                     });
                 }
             });

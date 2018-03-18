@@ -66,10 +66,28 @@
                 //    mode: 'label',
                 //    animationDuration: 5000
                 //},
+                //tooltips: {
+                //    mode: 'index',
+                //    bodyFontSize: 20,
+                //}
                 tooltips: {
+                    enabled: false,
                     mode: 'index',
                     bodyFontSize: 20,
+                    position: 'nearest',
+                    custom: function (tooltip) {
+                        var customTip = document.getElementById('myToolTip');
+                        if (tooltip.opacity === 0) {
+                            customTip.style.opacity = 0;
+                            return;
+                        }
+                        customTip.innerHTML = "<h1>" + tooltip.body[0].lines[0] + "間</h1>";
+                        customTip.style.opacity = 1;
+                        customTip.style.left = tooltip.caretX + 'px';
+                        customTip.style.bottom = tooltip.caretY + 'px';
+                    }
                 }
+
             },
         });
     </script>

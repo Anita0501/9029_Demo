@@ -27,6 +27,7 @@ public partial class Demo : System.Web.UI.Page
             com.Parameters.AddWithValue("UseLife", UseLife.Value);
             cn.Open();
             com.ExecuteNonQuery();
+            Response.Redirect("~/03_Ed/03_edit.aspx");
         }
     }
 }

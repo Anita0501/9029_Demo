@@ -30,41 +30,42 @@
         </div>--%>
         <div class="form-group">
             <asp:Label ID="CompanyID" runat="server" Text="統編" AssociatedControlID="CompanyIDTextBox" CssClass="col-2"></asp:Label>
-            <asp:TextBox ID="CompanyIDTextBox" runat="server" CssClass="col-4"></asp:TextBox>
+            <asp:TextBox ID="CompanyIDTextBox" runat="server" CssClass="col-4" placeholder="請輸入客戶公司統編"></asp:TextBox>
             <asp:Button ID="SelectBtn" CssClass="btn btn-sm btn-info col-1" runat="server" Text="查詢" OnClick="SelectBtn_Click" />
         </div>
         <div class="form-group">
             <asp:Label ID="CompanyName" runat="server" Text="公司名稱" AssociatedControlID="CompanyNameTextBox" CssClass="col-2"></asp:Label>
-            <asp:TextBox ID="CompanyNameTextBox" runat="server" CssClass="col-4" ReadOnly="True"></asp:TextBox>
+            <asp:TextBox ID="CompanyNameTextBox" runat="server" CssClass="col-4" placeholder="請以公司統編查詢代入" ReadOnly="True"></asp:TextBox>
         </div>
         <div class="form-group">
             <asp:Label ID="EmployeeID" runat="server" Text="員工編號" AssociatedControlID="EmployeeIDTextBox" CssClass="col-2"></asp:Label>
-            <asp:TextBox ID="EmployeeIDTextBox" runat="server" CssClass="col-4"></asp:TextBox>
+            <asp:TextBox ID="EmployeeIDTextBox" runat="server" CssClass="col-4" ReadOnly="True"></asp:TextBox>
         </div>
         <div class="form-group">
             <asp:Label ID="EmployeeName" runat="server" Text="員工名稱" AssociatedControlID="EmployeeNameTextBox" CssClass="col-2"></asp:Label>
-            <asp:TextBox ID="EmployeeNameTextBox" runat="server" CssClass="col-4"></asp:TextBox>
+            <asp:TextBox ID="EmployeeNameTextBox" runat="server" CssClass="col-4" ReadOnly="True"></asp:TextBox>
         </div>
         <div class="form-group">
             <asp:Label ID="TripTheme" runat="server" Text="行程主題" AssociatedControlID="TripThemeTextBox" CssClass="col-2"></asp:Label>
-            <asp:TextBox ID="TripThemeTextBox" runat="server" CssClass="col-4"></asp:TextBox>
+            <asp:TextBox ID="TripThemeTextBox" runat="server" CssClass="col-4" placeholder="請輸入拜訪客戶的主題"></asp:TextBox>
         </div>
         <div class="form-group">
             <asp:Label ID="TargetDate" runat="server" Text="預約日期" AssociatedControlID="TargetDateTextBox" CssClass="col-2"></asp:Label>
-            <asp:TextBox ID="TargetDateTextBox" runat="server" CssClass="col-4"></asp:TextBox>
+            <asp:TextBox ID="TargetDateTextBox" runat="server" CssClass="col-4" placeholder="請選擇要拜訪客戶的日期"></asp:TextBox>
         </div>
         <div class="form-group">
             <asp:Label ID="Memo" runat="server" Text="備註欄" AssociatedControlID="MemoTextBox" CssClass="col-2 "></asp:Label>
-            <asp:TextBox ID="MemoTextBox" runat="server" CssClass="col-4 abc" TextMode="MultiLine" Style="height: 80px"></asp:TextBox>
+            <asp:TextBox ID="MemoTextBox" runat="server" CssClass="col-4 abc" placeholder="請輸入要備註的事項" TextMode="MultiLine" Style="height: 80px"></asp:TextBox>
         </div>
         <br />
         <div>
-            <asp:Button ID="InsertBtn" CssClass="btn btn-info offset-2 col-1" runat="server" Text="新增" OnClick="InsertBtn_Click" />
+            <asp:Button ID="InsertBtn" CssClass="btn btn-info offset-2 col-1" runat="server" Text="新增" OnClick="InsertBtn_Click" OnClientClick="return false"/>
             <%--        <asp:Button ID="UpdateBtn" CssClass="btn btn-info col-1" runat="server" Text="修改" OnClick="UpdateBtn_Click" />--%>
             <asp:Button ID="CancelBtn" CssClass="btn btn-info col-1" runat="server" Text="取消" OnClick="CancelBtn_Click" />
             <asp:Button ID="Demobtn" CssClass="btn btn-default offset-3 col-1" runat="server" Text="Demo" OnClick="Demobtn_Click" />
         </div>
     </div>
+        <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="JavaScriptContentPlaceHolder" runat="Server">
     <%--    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>--%>
@@ -87,6 +88,23 @@
             $(function () {
                 $("#MainContentPlaceHolder_TargetDateTextBox").datepicker({ dateFormat: 'yy/mm/dd' });
             });
+
+            $("#MainContentPlaceHolder_InsertBtn").click(function () {
+
+                swal({
+                    title: '是否新增',
+                    //text: "客戶資料新增成功!",
+                    type: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: '確定',
+                    cancelButtonText: '取消'
+                }).then(
+                    function () {
+                        $("#__EVENTTARGET").val("ctl00$MainContentPlaceHolder$InsertBtn");
+                        $("#form1").submit();
+                    });
+            });
+
         });
     </script>
 </asp:Content>

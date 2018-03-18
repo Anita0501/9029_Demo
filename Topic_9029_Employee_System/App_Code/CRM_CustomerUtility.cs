@@ -99,13 +99,13 @@ public class CRM_CustomerUtility
     }
 
 
-    public void InsertCompanyScales(CRM_Customer r)
+    public void InsertCompanyCategorys(CRM_Customer r)
     {
         DBHelper.RunTSQL(
-            "insert into CRM_CompanyScales values(@scale)",
+            "insert into CRM_CompanyCategorys values(@category)",
                 new Dictionary<string, object>()
                 {
-                    {"@scale", r.CompanyScale }
+                    {"@category", r.CompanyCategory }
                 });
     }
 }

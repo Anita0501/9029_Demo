@@ -71,7 +71,19 @@ public partial class AMS_05_ViewEmployees : System.Web.UI.Page
             mySheet.Cells[i, 10].Value = empList[i].Email;
         }
 
-        xlsx.Save(Server.MapPath(@"employeeSheet.xlsx"));
+        xlsx.Save(Server.MapPath(@"~\Output\employeeSheet.xlsx"));
+
+
+        Response.AddHeader("Content-Type", "application/octet-stream");
+        Response.AddHeader("Content-Transfer-Encoding", "Binary");
+        Response.AddHeader("Content-disposition", "attachment;  filename=\"employeeSheet.xlsx\"");
+
+        Response.WriteFile(
+            HttpRuntime.AppDomainAppPath + @"Output\employeeSheet.xlsx");
+
+        Response.End();
+
+
     }
 
     protected void UpdateButton_Click(object sender, EventArgs e)

@@ -19,11 +19,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="CSSContentPlaceHolder" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitleContentPlaceHolder" runat="Server">
-    福委會管理
+    福委會活動管理
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="SiteMapContentPlaceHolder" runat="Server">
-    <li class="breadcrumb-item">福委會管理</li>
-    <li class="breadcrumb-item active">檢視活動報名列表</li>
+    <li class="breadcrumb-item">福委會活動管理</li>
+    <li class="breadcrumb-item active">活動報名列表</li>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
     <section class="tables">
@@ -58,10 +58,12 @@
 
             $.ajax({
                 type: 'POST',
-                url: 'EWC_WebService.asmx/GetSignUpList',
+                url: 'EWC_WebService.asmx/GetSignedEmpList',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
                 success: function (response) {
+
+                    //呼叫單一user的web service function
 
                     var signList = response.d;
                     var dataLength = signList.length;
@@ -83,7 +85,13 @@
                         var tb4 = $('<td>').
                             html(this.Name);
 
-                        trTag.append(tb1).append(tb2).append(tb3).append(tb4);
+                        var tb5 = $('<td>').
+                            html(this.Email);
+
+                        var tb6 = $('<td>').
+                            html(this.Ext);
+
+                        trTag.append(tb1).append(tb2).append(tb3).append(tb4).append(tb5).append(tb6);
 
                         $("#th").append(thTag);
                         $("#tb").append(trTag);

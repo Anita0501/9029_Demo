@@ -9,14 +9,16 @@
 
         //正式
         string qs = Request.QueryString["Album"];
+        string qs2 = Request.QueryString["admin"];
         List<string> qsl = new List<string>();
-        
+
         foreach (var item in qs.Split(','))
         {
             qsl.Add(item);
         }
-        AlbumID.Value=qsl[0];
-        AlbumTitle.Value=qsl[1];
+        AlbumID.Value = qsl[0];
+        AlbumTitle.Value = qsl[1];
+        admin.Value = qs2;
     }
 </script>
 
@@ -35,57 +37,23 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitleContentPlaceHolder" runat="Server">
+    福委會活動管理
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="SiteMapContentPlaceHolder" runat="Server">
+    <li class="breadcrumb-item">福委會活動管理</li>
+    <li class="breadcrumb-item active">活動相簿</li>
+    <li class="breadcrumb-item active">活動相片</li>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="photo-row" id="photoStart" style="margin-top:65px;">
-                <div style="margin-top:65px;"></div>
-                <%--<a href="https://unsplash.it/1200/768.jpg?image=251" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2" data-title="員工旅遊相簿" data-footer="好大的山！">
-                    <img src="https://unsplash.it/600.jpg?image=251" class="img-fluid">
-                </a>--%>
-                <%-- <a href="https://unsplash.it/1200/768.jpg?image=252" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2">
-                <img src="https://unsplash.it/600.jpg?image=252" class="img-fluid">
-            </a>
-            <a href="https://unsplash.it/1200/768.jpg?image=253" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2">
-                <img src="https://unsplash.it/600.jpg?image=253" class="img-fluid">
-            </a>
-            <a href="https://unsplash.it/1200/768.jpg?image=251" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2" data-title="員工旅遊相簿" data-footer="好大的山！">
-                <img src="https://unsplash.it/600.jpg?image=251" class="img-fluid">
-            </a>
-            <a href="https://unsplash.it/1200/768.jpg?image=252" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2">
-                <img src="https://unsplash.it/600.jpg?image=252" class="img-fluid">
-            </a>
-            <a href="https://unsplash.it/1200/768.jpg?image=253" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2">
-                <img src="https://unsplash.it/600.jpg?image=253" class="img-fluid">
-            </a>
-            <a href="https://unsplash.it/1200/768.jpg?image=251" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2" data-title="員工旅遊相簿" data-footer="好大的山！">
-                <img src="https://unsplash.it/600.jpg?image=251" class="img-fluid">
-            </a>
-            <a href="https://unsplash.it/1200/768.jpg?image=252" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2">
-                <img src="https://unsplash.it/600.jpg?image=252" class="img-fluid">
-            </a>
-            <a href="https://unsplash.it/1200/768.jpg?image=253" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2">
-                <img src="https://unsplash.it/600.jpg?image=253" class="img-fluid">
-            </a>--%>
+            <div class="photo-row" id="photoStart" style="margin-top: 65px;">
+            <%-- photo html append這裡 --%>
             </div>
-            <%--<div class="row">
-            <a href="https://unsplash.it/1200/768.jpg?image=254" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                <img src="https://unsplash.it/600.jpg?image=254" class="img-fluid">
-            </a>
-            <a href="https://unsplash.it/1200/768.jpg?image=255" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                <img src="https://unsplash.it/600.jpg?image=255" class="img-fluid">
-            </a>
-            <a href="https://unsplash.it/1200/768.jpg?image=256" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                <img src="https://unsplash.it/600.jpg?image=256" class="img-fluid">
-            </a>
-        </div>--%>
-           
-            <input id="backtoalbum" class="btn btn-primary btn-sm" Style="width: 200px; margin-right: 30px; margin-top:60px;" type="button" value="返回相簿" />
+            <input id="backtoalbum" class="btn btn-primary btn-sm" style="width: 200px; margin-right: 30px; margin-top: 60px;" type="button" value="返回相簿" />
             <asp:HiddenField ID="AlbumID" runat="server" />
             <asp:HiddenField ID="AlbumTitle" runat="server" />
+            <asp:HiddenField ID="admin" runat="server" />
         </div>
     </div>
 </asp:Content>
@@ -118,16 +86,22 @@
 
                         var PhotoPath = this.FilePath.substring(6);
                         var phototg =
-                            '<a href="' + PhotoPath + '" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2" data-title="' + $("#MainContentPlaceHolder_AlbumTitle").val() +'" data-footer="'+ this.PhotoDesc+'">'+
-                            '<img src= "' + PhotoPath +'" class="img-fluid" >'+
+                            '<a href="' + PhotoPath + '" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2" data-title="' + $("#MainContentPlaceHolder_AlbumTitle").val() + '" data-footer="' + this.PhotoDesc + '">' +
+                            '<img src= "' + PhotoPath + '" class="img-fluid" >' +
                             '</a >'
-                            $("#photoStart").append(phototg);
+                        $("#photoStart").append(phototg);
                     });
                 }
             });
 
+            var admin = $("#MainContentPlaceHolder_admin").val(); 
             $("#backtoalbum").click(function () {
-                location.href = "EWC_05-User-AlbumViewer.aspx";
+                if (admin == "1"){
+                    location.href = "EWC_12-Manager-AlbumViewer.aspx";
+                } else {
+                    location.href = "EWC_05-User-AlbumViewer.aspx";
+                }
+                
             });
         });
     </script>

@@ -25,7 +25,7 @@ public partial class _03_Profile : System.Web.UI.Page
             PermissionsDropDownList.AppendDataBoundItems = true;
             PermissionsDropDownList.DataSource = roleList;
             PermissionsDropDownList.DataTextField = "RoleName";
-            PermissionsDropDownList.DataValueField = "RoleID";
+            PermissionsDropDownList.DataValueField = "RoleId";
             PermissionsDropDownList.DataBind();
 
             ShowProfile();
@@ -103,14 +103,28 @@ public partial class _03_Profile : System.Web.UI.Page
 
     public void ShowProfile()
     {
+        int roleSelectIndex = 0;
         emp = Employee.LoginUser();
+
+        if (emp.RoleID == 1)
+        {
+            roleSelectIndex = 1;
+        }
+        else if (emp.RoleID == 3)
+        {
+            roleSelectIndex = 2;
+        }
+        else if (emp.RoleID == 9)
+        {
+            roleSelectIndex = 3;
+        }
         string base64String = Convert.ToBase64String(emp.ImageBytes, 0, (emp.ImageBytes).Length);
         EmpImage.ImageUrl = "data:image/png;base64," + base64String;
         EmpIDTextBox.Text = emp.EmployeeID.ToString();
         EmpNameTextBox.Text = emp.EmployeeName;
         DepatmentDropDownList.SelectedIndex = emp.DepatmentID;
         JobTitleTextBox.Text = emp.JobTitle;
-        PermissionsDropDownList.SelectedIndex = emp.RoleID;
+        PermissionsDropDownList.SelectedIndex = roleSelectIndex;
         DutyDate.Text = emp.DutyDate;
         Birthday.Text = emp.Birthday;
         CellphoneTextBox.Text = emp.Cellphone;

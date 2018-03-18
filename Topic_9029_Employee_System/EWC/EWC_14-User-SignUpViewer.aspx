@@ -4,40 +4,43 @@
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        Employee testLoginUser = new Employee("A1002", "000", "楊于萱", "PR", 1, 1, "2018/06/07", "2018/10/10", "100", "XXXX@gmail.com", "0910111222", "AAAAAA", new byte[] { 1 }, "2018/10/10", "2018/10/15");
+        //Employee testLoginUser = new Employee("A1002", "000", "楊于萱", "PR", 1, 1, "2018/06/07", "2018/10/10", "100", "XXXX@gmail.com", "0910111222", "AAAAAA", new byte[] { 1 }, "2018/10/10", "2018/10/15");
+        Employee testLoginUser = Employee.LoginUser();
         Session["EmployeeInfo"] = testLoginUser;
         Employee E = Employee.LoginUser();
-        //EmployeeID_hidden.Value = E.EmployeeID;
+        SignUpAtvID_hidden.Value = E.EmployeeID;
         //EmployeeName_hidden.Value = E.EmployeeName;
 
         //page_load進來就取員工報名的活動清單
-        EWC_SignUpUtility su = new EWC_SignUpUtility();
-        List<EWC_SignUp> suList = new List<EWC_SignUp>();
-        suList = su.GetSignUp(E.EmployeeID);
+        //EWC_SignUpAtvUtility sua = new EWC_SignUpAtvUtility();
+        //List<EWC_SignUpAtv> suaList = new List<EWC_SignUpAtv>();
 
-        string atv = "";
-        if (suList.Count > 0)
-        {
-            foreach (EWC_SignUp item in suList)
-            {
-                atv += item.ActivityID + ","; //跑迴圈取報名活動編號,組成string,放到隱藏欄位
-            }
+        //suaList = sua.GetSignUpAtv(E.EmployeeID);
 
-            atv = atv.Remove(atv.Length - 1);
+        //string atv = "";
+        //if (suaList.Count > 0)
+        //{
+        //    foreach (EWC_SignUpAtv item in suaList)
+        //    {
+        //        /*atv += item.ActivityID + ","; *///跑迴圈取報名活動編號,組成string,放到隱藏欄位
 
-            SignUpAtvID_hidden.Value = atv;
-        }
+        //    }
+
+        //    atv = atv.Remove(atv.Length - 1);
+
+        //    SignUpAtvID_hidden.Value = atv;
+        //}
     }
 </script>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="CSSContentPlaceHolder" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitleContentPlaceHolder" runat="Server">
-    福委會管理
+    福委會活動管理
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="SiteMapContentPlaceHolder" runat="Server">
-    <li class="breadcrumb-item">福委會管理</li>
-    <li class="breadcrumb-item active">檢視活動報名列表</li>
+<li class="breadcrumb-item">福委會活動管理</li>
+    <li class="breadcrumb-item active">活動報名列表</li>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
     <section class="tables">
@@ -71,68 +74,109 @@
     <script>
         $(function () {
 
-            if ($("#MainContentPlaceHolder_SignUpAtvID_hidden").val() != "") {
+            var userID = $("#MainContentPlaceHolder_SignUpAtvID_hidden").val();
 
-                var thTag = $('<tr><th>#</th ><th>活動編號</th><th>活動名稱</th><th>活動類型</th><th>活動日期</th><th></th></tr>');
+            $.ajax({
+                type: 'POST',
+                url: 'EWC_WebService.asmx/GetSignedAtvList',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({ loginID: userID }),
+                success: function (response) {
 
-                var userSignedUpList = $("#MainContentPlaceHolder_SignUpAtvID_hidden").val().split(',');
+                    var atvList = response.d;
+                    var dataLength = atvList.length;
+                    var thTag = $('<tr><th>#</th ><th>活動名稱</th><th>活動類型</th><th>活動日期</th><th>活動時間</th><th>詳細資訊</th></tr>');
 
-                $(userSignedUpList).each(function (i, item) {
+                    $(atvList).each(function (i, item) {
 
-                    var trTag = $('<tr>');
+                        var trTag = $('<tr>');
 
-                    var tb1 = $('<th>').
-                        attr("scope", "row").
-                        html(i + 1);
+                        var tb1 = $('<th>').
+                            attr("scope", "row").
+                            html(i + 1);
 
-                    var tb2 = $('<td>').
-                        html(userSignedUpList[i]);
+                        
 
-                    trTag.append(tb1).append(tb2);
+                        //取得atv type轉成文字
+                        var Atvtype = this.Type;
 
-                    $("#th").append(thTag);
-                    $("#tb").append(trTag);
+                        switch (this.Type) {
+                            case "0":
+                                Atvtype = "家庭日";
+                                break;
+                            case "1":
+                                Atvtype = "電影";
+                                break;
+                            case "2":
+                                Atvtype = "慶生會";
+                                break;
+                            case "3":
+                                Atvtype = "聚餐";
+                                break;
+                            case "4":
+                                Atvtype = "競賽";
+                                break;
+                            case "5":
+                                Atvtype = "健康檢查";
+                                break;
+                            case "6":
+                                Atvtype = "其他";
+                                break;
+                        }
 
-                });
-            }
-            //$.ajax({
-            //    type: 'POST',
-            //    url: 'EWC_WebService.asmx/GetSignUpList',
-            //    dataType: 'json',
-            //    contentType: 'application/json; charset=utf-8',
-            //    success: function (response) {
-
-            //        var signList = response.d;
-            //        var dataLength = signList.length;
-            //        var thTag = $('<tr><th>#</th ><th>活動編號</th><th>員工編號</th><th>姓名</th><th>電子信箱</th><th>分機</th></tr>');
-
-            //        $(signList).each(function (i, item) {
-            //            var trTag = $('<tr>');
-
-            //            var tb1 = $('<th>').
-            //                attr("scope", "row").
-            //                html(i + 1);
-
-            //            var tb2 = $('<td>').
-            //                html(this.ActivityID);
-
-            //            var tb3 = $('<td>').
-            //                html(this.EmployeeID);
-
-            //            var tb4 = $('<td>').
-            //                html(this.Name);
-
-            //            trTag.append(tb1).append(tb2).append(tb3).append(tb4);
-
-            //            $("#th").append(thTag);
-            //            $("#tb").append(trTag);
-            //        });
-
-            //    }
-            //});
+                        var tb2 = $('<td>').
+                            html(Atvtype);
 
 
+                        var tb3 = $('<td>').
+                            html(this.Title);
+                        //var tb3 = $('<td>').
+                        //    html(this.StartDate
+                        //        );
+
+                        var AtvDate = "";
+
+
+                        if (this.EndDate == "") {
+                            AtvDate = this.StartDate
+                        } else {
+                            AtvDate = this.StartDate + " ~ " + this.EndDate
+                        }
+
+                        var AtvTime = this.StartTime + " ~ " + this.EndTime;
+
+                        var tb4 = $('<td>').
+                            html(AtvDate);
+
+                        var tb5 = $('<td>').
+                            html(AtvTime);
+
+                        var tb6 = $('<td>');
+
+                        var tb7 = $('<input>').
+                            attr("type", "button").
+                            attr("alt", this.ActivityID).
+                            attr("style", "margin-right:20px").
+                            val("詳細資訊").click(
+                            function (atvID) {
+                                atvID = $(this).attr("alt");
+                                location.href = "EWC_03-User-ActivityDetail.aspx?ID=" + atvID;
+                            });
+
+                        tb6.append(tb7);
+                        trTag.append(tb1).append(tb2).append(tb3).append(tb4).append(tb5).append(tb6);
+
+                        $("#th").append(thTag);
+                        $("#tb").append(trTag);
+
+                    });
+                }
+            });
         });
+
+
+
     </script>
 </asp:Content>
 

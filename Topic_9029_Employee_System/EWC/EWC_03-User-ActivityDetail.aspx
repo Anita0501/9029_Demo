@@ -32,7 +32,7 @@
         .secondDiv {
             position: relative;
             left: -50%;
-            height: 70vh;
+            height: 65vh;
             width: 80vw;
             overflow: auto;
         }
@@ -74,11 +74,18 @@
             font-size: 20px;
             font-weight: bold;
         }
+
+        .scoll-div {
+            height: calc(100% - 150px);
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitleContentPlaceHolder" runat="Server">
+    福委會活動管理
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="SiteMapContentPlaceHolder" runat="Server">
+        <li class="breadcrumb-item">福委會活動管理</li>
+    <li class="breadcrumb-item active">活動詳情</li>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
     <%--    <div class="container">
@@ -115,7 +122,7 @@
                         <%-- <div class="col-sm">
                             臺北市體育總會田徑協會本著推展臺北市觀光發展為理念，以運動結合觀光推展具有臺灣特色的路跑活動，自2015年起連續兩年辦理「早安台北半程馬拉松暨城市邀請賽」，為鼓勵全民運動風氣，在臺北市最美麗的河濱公園大佳河濱公園舉辦全民皆可參加的路跑活動。
                         </div>--%>
-                        <div id="Description" class="col-sm">
+                        <div id="Description" class="col-sm" style="text-align: center;">
                         </div>
                     </div>
                     <div class="row">

@@ -29,7 +29,7 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
     <br />
-<%--    <div class="container">
+    <%--    <div class="container">
         <asp:Label ID="DeleteLab" runat="server" Text="公司統編" AssociatedControlID="DeleteTextBox" CssClass="col-2"></asp:Label>
         <asp:TextBox ID="DeleteTextBox" runat="server" CssClass="col-4"></asp:TextBox>
         <asp:Button ID="DeleteBtn" runat="server" Text="刪除" OnClick="DeleteBtn_Click" CssClass="btn btn-info col-1" />
@@ -50,9 +50,9 @@
                         <asp:TextBox ID="TripID" runat="server" class="text ui-widget-content ui-corner-all col-6" disabled="disabled"></asp:TextBox>
                         <asp:HiddenField ID="TripIDHiddenField" runat="server" />
                         <label for="CompanyID" class="col-4">統編</label>
-                        <asp:TextBox ID="CompanyID" runat="server"  class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
+                        <asp:TextBox ID="CompanyID" runat="server" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="CompanyName" class="col-4">公司名稱</label>
-                        <asp:TextBox ID="CompanyName" runat="server"  value="" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
+                        <asp:TextBox ID="CompanyName" runat="server" value="" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="EmployeeID" class="col-4">員工編號</label>
                         <asp:TextBox ID="EmployeeID" runat="server" class="text ui-widget-content ui-corner-all col-6"></asp:TextBox>
                         <label for="EmployeeName" class="col-4">員工名稱</label>
@@ -75,6 +75,8 @@
 
     <div class="container">
         <input id="CloseBtn" type="button" value="收折列表" class="btn btn-info btn-group-lg" />
+        <asp:Button ID="ExcelBtn" runat="server" Text="匯出列表" CssClass="btn btn-info" OnClick="ExcelBtn_Click" />
+        <asp:Label ID="MsgLab" runat="server" Text="" Style="color:dodgerblue"></asp:Label>
         <br />
         <br />
         <table id="BusinessScheduleTable" class="table table-info table-bordered table-hover">
@@ -184,7 +186,7 @@
                             confirmButtonText: '確定刪除!',
                             cancelButtonText: '取消'
                         }).then((result) => {
-                            if (result.value) {
+                            if (result) {
                                 $.ajax({
                                     type: "POST",
                                     url: "CRM_WebService.asmx/DeleteSchedule",

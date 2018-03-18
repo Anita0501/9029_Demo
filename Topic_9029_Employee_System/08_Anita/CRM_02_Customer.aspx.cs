@@ -17,17 +17,18 @@ public partial class _02_AddCustomer : System.Web.UI.Page
     }
     protected void Demobtn_Click(object sender, EventArgs e)
     {
-        CompanyIDTextBox.Text = "53212539";
-        CompanyNameTextBox.Text = "高思數位網路有限公司";
-        CompanyAddressTextBox.Text = "新北市樹林區圳民里俊英街248巷26號";
-        CompanyPhoneTextBox.Text = "02-8888-8888";
-        OfficialWebsiteTextBox.Text = "https://www.facebook.com/";
-        ContactPersonTextBox.Text = "王大明";
-        CP_PhoneTextBox.Text = "0912-345-678";
-        CP_EmailTextBox.Text = "BigLight@yahoo.com.tw";
+        CompanyIDTextBox.Text = "30986336";
+        CompanyNameTextBox.Text = "台灣優利系統股份有限公司";
+        CompanyAddressTextBox.Text = "臺北市敦化南路2段333號8樓";
+        CompanyPhoneTextBox.Text = "02-2735-4567";
+        OfficialWebsiteTextBox.Text = "https://www.facebook.com/testDemo";
+        ContactPersonTextBox.Text = "王嘉昇";
+        CP_PhoneTextBox.Text = "0916-888-578";
+        CP_EmailTextBox.Text = "JiaHong@yahoo.com.tw";
     }
     protected void CancelBtn_Click(object sender, EventArgs e)
     {
+        ErrorLab.Text = "";
         CompanyIDTextBox.Text = "";
         CompanyNameTextBox.Text = "";
         CompanyAddressTextBox.Text = "";
@@ -64,7 +65,7 @@ public partial class _02_AddCustomer : System.Web.UI.Page
         }
         catch (Exception)
         {
-            ErrorLab.Text = "此客戶資料已存在";
+            ErrorLab.Text = "客戶資料格式錯誤或已建立，請確認統編";
         }
     }
 

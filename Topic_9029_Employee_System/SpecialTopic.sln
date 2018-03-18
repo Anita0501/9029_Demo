@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Topic_9029_Employee_System", "..\Topic_9029_Employee_System", "{0A1DCF7C-612F-46F8-9DF5-90308C77BA59}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Topic_9029_Employee_System", "..\Topic_9029_Employee_System", "{A845065E-C0D4-4E97-A0CF-ECF4641F0893}"
 	ProjectSection(WebsiteProperties) = preProject
 		SccProjectName = "SAK"
 		SccAuxPath = "SAK"
@@ -33,8 +33,8 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0A1DCF7C-612F-46F8-9DF5-90308C77BA59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A1DCF7C-612F-46F8-9DF5-90308C77BA59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A845065E-C0D4-4E97-A0CF-ECF4641F0893}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A845065E-C0D4-4E97-A0CF-ECF4641F0893}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

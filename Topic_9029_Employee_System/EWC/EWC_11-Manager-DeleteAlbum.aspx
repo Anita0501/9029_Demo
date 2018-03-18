@@ -7,9 +7,12 @@
 
         //測試資料
         //string qs = "17S21_636531845615897332,123,123";
+        //string qs2 = "1";
 
         //正式
         string qs = Request.QueryString["Album"];
+        string qs2 = Request.QueryString["admin"];
+
         List<string> qsl = new List<string>();
 
         foreach (var item in qs.Split(','))
@@ -22,6 +25,8 @@
 
         AlbName_LB2.Text = qsl[1];
         AlbDesc_LB2.Text = qsl[2];
+
+        admin.Value = qs2;
     }
 
 
@@ -36,11 +41,12 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TitleContentPlaceHolder" runat="Server">
-    福委會管理
+    福委會活動管理
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="SiteMapContentPlaceHolder" runat="Server">
-    <li class="breadcrumb-item">福委會管理</li>
-    <li class="breadcrumb-item active">編輯相簿</li>
+    <li class="breadcrumb-item">福委會活動管理</li>
+    <li class="breadcrumb-item active">活動相簿</li>
+    <li class="breadcrumb-item active">刪除相簿</li>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
     <section class="tables">
@@ -49,7 +55,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header d-flex align-items-center">
-                            <h3 class="h4">編輯</h3>
+                            <h3 class="h4">刪除</h3>
                         </div>
                         <div class="card-body">
                             <div class="form-group row">
@@ -94,6 +100,7 @@
                             <asp:HiddenField ID="AlbumID" runat="server" />
                             <asp:HiddenField ID="AlbumTitle" runat="server" />
                             <asp:HiddenField ID="AlbumDesc" runat="server" />
+                            <asp:HiddenField ID="admin" runat="server" />
                         </div>
                     </div>
                 </div>
@@ -138,10 +145,8 @@
                         var PhotoPath = this.FilePath.substring(6);
 
                         var tb3 = $('<img>').
-                            attr("style", "vertical-align:middle").
-                            attr("src", PhotoPath).
-                            attr("height", "150").
-                            attr("width", "180");
+                            attr("style", "vertical-align:middle; height:240px; width:360px;").
+                            attr("src", PhotoPath);
 
                         tb2.append(tb3);
 
@@ -248,7 +253,7 @@
                                     confirmButtonText: '好'
                                 }).then(
                                     function () {
-                                        location.href = "EWC_05-User-AlbumViewer.aspx";
+                                        location.href = "EWC_12-Manager-AlbumViewer.aspx";
                                     });
                             }
                         });
@@ -267,8 +272,13 @@
 
             });
 
+            var admin = $("#MainContentPlaceHolder_admin").val(); 
             $("#Cancel").click(function () {
-                location.href = "EWC_05-User-AlbumViewer.aspx";
+                if (admin == "1") {
+                    location.href = "EWC_12-Manager-AlbumViewer.aspx";
+                } else {
+                    location.href = "EWC_05-User-AlbumViewer.aspx";
+                }
             });
         });
     </script>

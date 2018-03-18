@@ -22,7 +22,7 @@ public class EWC_AlbumUtility
 {
     public List<EWC_Album> GetAlbum()
     {
-        DataTable dt = EWC_DBHelper.GetDataTable("select * from EWC_Album ORDER BY AlbumID DESC", null); //呼叫DBHelper的GetDataTable方法,查詢全部資料條件參數給null即可
+        DataTable dt = EWC_DBHelper.GetDataTable("select a.*, b.StartDate from EWC_Album as a join EWC_Activity as b on a.ActivityID = b.ActivityID order by StartDate DESC ", null); //呼叫DBHelper的GetDataTable方法,查詢全部資料條件參數給null即可
 
         List<EWC_Album> aList = new List<EWC_Album>(); //建立EWC_Activity型別的List,之後接GetDataTable回傳的EWC_Activity List
 

@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.Collections.Generic;
+using System.Linq;
+
 
 [WebService(Namespace = "http://tempuri.org/")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
@@ -151,4 +153,35 @@ public class WebService : System.Web.Services.WebService
         return sList;
 
     }
+
+    //拿user signup list with employee detail
+    [WebMethod]
+    public List<EWC_SignUpEmployee> GetSignedEmpList()
+    {
+        List<EWC_SignUpEmployee> sList = new List<EWC_SignUpEmployee>();
+        EWC_SignUpEmployeeUtility su = new EWC_SignUpEmployeeUtility();
+        sList = su.GetSignUpEmployee();
+        return sList;
+    }
+
+    //拿login user signup list with activity detail
+    [WebMethod]
+    public List<EWC_SignUpAtv> GetSignedAtvList(string loginID)
+    {
+        List<EWC_SignUpAtv> sList = new List<EWC_SignUpAtv>();
+        EWC_SignUpAtvUtility su = new EWC_SignUpAtvUtility();
+        sList = su.GetSignUpAtv(loginID);
+        return sList;
+    }
+
+    ////拿login user signup list with activity detail
+    //[WebMethod]
+    //public List<EWC_SignUpAtv> GetSignedAtvList()
+    //{
+    //    List<EWC_SignUpAtv> sList = new List<EWC_SignUpAtv>();
+    //    EWC_SignUpAtvUtility su = new EWC_SignUpAtvUtility();
+    //    sList = su.GetSignUpAtv();
+    //    return sList;
+    //}
+
 }

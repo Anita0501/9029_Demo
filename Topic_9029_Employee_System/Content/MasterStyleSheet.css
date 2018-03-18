@@ -49,9 +49,9 @@ body {
         left: 250px;
     }
 
-        .content-inner.active {
-            left: 90px;
-        }
+    .content-inner.active {
+        left: 90px;
+    }
 
     nav.side-navbar {
         position: fixed;
@@ -79,6 +79,7 @@ li,
 button,
 input[type='submit'],
 span,
-.h4 {
+.h4,
+h1 {
     font-family: 微軟正黑體 !important;
 }

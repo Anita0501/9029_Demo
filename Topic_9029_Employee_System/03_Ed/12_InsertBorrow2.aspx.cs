@@ -55,6 +55,9 @@ public partial class Demo : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        Employee employee = Employee.LoginUser();//引用一點的方法
+        string InId = employee.EmployeeID;//員工編號
+        string InName = employee.EmployeeName;//員工名稱
         string id = Request.QueryString["id"];//網址帶過來的值
         using (var cn = new SqlConnection(dblink))
         {
@@ -79,5 +82,6 @@ public partial class Demo : System.Web.UI.Page
             StrAmount = dt.Rows[0]["EquipmentAmount"].ToString();//取回數量
             IntAmount = Convert.ToInt32(StrAmount);
         }
+        idUserName.Value = InName ;
     }
 }

@@ -25,21 +25,6 @@
     <asp:hiddenfield id="CountHiddenField" runat="server" />
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="JavaScriptContentPlaceHolder" runat="Server">
-    <%--    <script>
-        var ctx = document.getElementById("myChart");
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: document.getElementById("MainContentPlaceHolder_CompanyScaleHiddenField").value.split(","),
-                datasets: [{
-                    label: '客戶公司規模',
-                    data: document.getElementById("MainContentPlaceHolder_CountHiddenField").value.split(","),
-                    borderWidth: 1,
-                    backgroundColor: GetRandomColors(5)
-                }]
-            }
-        });
-    </script>--%>
     <script>
         var ctx = document.getElementById("myChart").getContext("2d");
         var myChart = new Chart(ctx, {
@@ -49,7 +34,16 @@
                 datasets: [{
                     labels: '客戶公司規模',
                     data: document.getElementById("MainContentPlaceHolder_CountHiddenField").value.split(","),
-                    backgroundColor: GetColors(6),
+                    backgroundColor:
+                    [
+                        'rgba(255, 99, 132,0.5)',
+                        'rgba(255, 159, 64,0.5)',
+                        'rgba(255, 205, 86,0.5)',
+                        'rgba(75, 192, 192,0.5)',
+                        'rgba(54, 162, 235,0.5)',
+                        'rgba(153, 102, 255,0.5)',
+                        'rgba(231,233,237,0.5)'
+                    ],
                 }]
             },
             options: {
@@ -57,7 +51,7 @@
                     display: true,
                     text: '客戶公司規模統計圖',
                     fontSize: 40,
-                    fontStyle: 'bold'
+                    //fontStyle: 'bold'
                 },
                 legend: {
                     display: true,
